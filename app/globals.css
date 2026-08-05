@@ -158,20 +158,6 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .organ-item b { display: block; font: 500 17px/1.1 var(--font-serif), serif; }
 .organ-item small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
 .organ-item .favorite { color: #ef8d7d; }
-.view-all {
-  min-height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: rgba(255,255,255,.24);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 13px;
-  cursor: pointer;
-  font: 500 12px var(--font-serif), serif;
-}
-.organ-library .view-all { margin-top: 9px; }
-.organ-library blockquote { display: none; }
 
 .viewer-shell {
   position: relative;
@@ -404,7 +390,6 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .brand strong { font-size: 25px; }
   .viewer-shell { min-height: 485px; height: 66vh; }
   .organ-list { grid-template-columns: 1fr; }
-  .organ-library .view-all { margin-bottom: 8px; }
   .tip-note { display: none; }
   .specimen-stamp { width: 68px; height: 68px; }
 }

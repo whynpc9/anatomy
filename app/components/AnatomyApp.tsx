@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import {
-  ArrowRight,
   Heart,
   LibraryBig,
   Search,
@@ -130,12 +129,6 @@ export function AnatomyApp() {
               </button>
             ))}
           </div>
-          <button className="view-all" onClick={() => setQuery("")}>查看全部器官 <ArrowRight size={14} /></button>
-          <blockquote>
-            <Sparkles size={18} />
-            <p>学习源于好奇。</p>
-            <em>保持探索！</em>
-          </blockquote>
         </aside>
 
         <OrganViewer
