@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
 import "./globals.css";
 
-const sans = DM_Sans({
+const sans = Noto_Sans_SC({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const serif = Cormorant_Garamond({
+const serif = Noto_Serif_SC({
   variable: "--font-serif",
   subsets: ["latin"],
 });
@@ -16,7 +16,7 @@ const OG_IMAGE = {
   url: "/og.jpg",
   width: 1200,
   height: 675,
-  alt: "An anatomical heart specimen floating above a plinth, beside the Anatomy Atelier wordmark",
+  alt: "一枚心脏解剖标本悬浮在基座上方，旁边是“解剖工坊”字样",
 };
 
 /**
@@ -34,11 +34,11 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Anatomy Atelier — Learn anatomy like an artist",
+  title: "解剖工坊 — 人体器官 3D 图鉴",
   description:
-    "Explore medically detailed 3D organs — heart, brain, lungs, liver, kidneys, eye, intestine, pancreas, and skin — through an elegant, interactive anatomy atelier.",
-  applicationName: "Anatomy Atelier",
-  keywords: ["anatomy", "3D anatomy", "human body", "medical education", "interactive learning", "organs"],
+    "通过优雅的交互式 3D 标本，浏览心脏、大脑、肺、肝、肾、眼、肠、胰与皮肤等人体器官的介绍与结构。",
+  applicationName: "解剖工坊",
+  keywords: ["解剖", "3D 解剖", "人体器官", "器官结构", "医学教育", "交互式学习"],
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -50,15 +50,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Anatomy Atelier",
-    title: "Anatomy Atelier — Learn anatomy like an artist",
-    description: "Learn anatomy like an artist through immersive, medically detailed 3D specimens.",
+    siteName: "解剖工坊",
+    title: "解剖工坊 — 人体器官 3D 图鉴",
+    description: "通过沉浸式的 3D 标本，浏览人体器官的介绍与结构。",
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anatomy Atelier — Learn anatomy like an artist",
-    description: "Learn anatomy like an artist through immersive, medically detailed 3D specimens.",
+    title: "解剖工坊 — 人体器官 3D 图鉴",
+    description: "通过沉浸式的 3D 标本，浏览人体器官的介绍与结构。",
     images: [OG_IMAGE],
   },
 };
@@ -73,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body
         className={`${sans.variable} ${serif.variable}`}
       >

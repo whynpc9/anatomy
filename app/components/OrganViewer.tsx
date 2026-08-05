@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Box,
   CircleDashed,
   Layers3,
   Maximize2,
@@ -19,11 +18,9 @@ type Props = {
   organ: Organ;
   autoRotate: boolean;
   onAutoRotate: (enabled: boolean) => void;
-  compare: boolean;
-  onCompare: () => void;
 };
 
-export function OrganViewer({ organ, autoRotate, onAutoRotate, compare, onCompare }: Props) {
+export function OrganViewer({ organ, autoRotate, onAutoRotate }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<AnatomyViewer | null>(null);
   const organRef = useRef(organ);
@@ -104,7 +101,6 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate, compare, onCompar
     if (tool === "isolate") setActiveTool(viewer.toggleIsolate() ? tool : null);
     if (tool === "section") setActiveTool(viewer.toggleCrossSection() ? tool : null);
     if (tool === "layers") setActiveTool(viewer.toggleLayers() ? tool : null);
-    if (tool === "compare") onCompare();
     if (tool === "reset") {
       viewer.reset();
       setActiveTool(null);
@@ -112,28 +108,27 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate, compare, onCompar
   };
 
   const tools = [
-    { id: "rotate", label: "Rotate", icon: RotateCcw },
-    { id: "zoom", label: "Zoom", icon: Search },
-    { id: "isolate", label: "Isolate", icon: CircleDashed },
-    { id: "section", label: "Cross-section", icon: ScanLine },
-    { id: "layers", label: "Layers", icon: Layers3 },
-    { id: "compare", label: "Compare", icon: Box },
-    { id: "reset", label: "Reset", icon: RotateCcw },
+    { id: "rotate", label: "旋转", icon: RotateCcw },
+    { id: "zoom", label: "缩放", icon: Search },
+    { id: "isolate", label: "隔离", icon: CircleDashed },
+    { id: "section", label: "剖面", icon: ScanLine },
+    { id: "layers", label: "分层", icon: Layers3 },
+    { id: "reset", label: "重置", icon: RotateCcw },
   ];
 
   return (
-    <section className="viewer-shell" aria-label={`${organ.name} interactive viewer`}>
+    <section className="viewer-shell" aria-label={`${organ.name}交互式查看器`}>
       <div className="viewer-glow" style={{ "--organ-accent": organ.accent } as React.CSSProperties} />
       <div ref={mountRef} className="three-mount" />
 
-      <div className="viewer-tools" aria-label="3D viewer tools">
+      <div className="viewer-tools" aria-label="3D 查看器工具">
         {tools.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             type="button"
-            className={`tool-button ${(activeTool === id || (id === "compare" && compare)) ? "active" : ""}`}
+            className={`tool-button ${activeTool === id ? "active" : ""}`}
             onClick={() => handleTool(id)}
-            aria-pressed={activeTool === id || (id === "compare" && compare)}
+            aria-pressed={activeTool === id}
             title={label}
           >
             <Icon size={19} strokeWidth={1.65} />
@@ -142,15 +137,15 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate, compare, onCompar
         ))}
       </div>
 
-      <aside className="tip-note" aria-label="Viewer instructions">
-        <span><Sparkles size={15} /> Tip</span>
-        <p>Drag to rotate<br />Scroll to zoom<br />Click a dot to learn more</p>
+      <aside className="tip-note" aria-label="查看器操作提示">
+        <span><Sparkles size={15} /> 提示</span>
+        <p>拖动旋转<br />滚轮缩放<br />点击圆点了解结构</p>
       </aside>
 
       {selected && (
         <div className="hotspot-callout" ref={calloutRef} data-side="right">
           <div className="callout-body" style={{ "--hotspot-color": selected.color } as React.CSSProperties}>
-            <button className="callout-close" type="button" onClick={() => viewerRef.current?.clearSelection()} aria-label="Close">
+            <button className="callout-close" type="button" onClick={() => viewerRef.current?.clearSelection()} aria-label="关闭">
               <X size={13} />
             </button>
             <b>{selected.label}</b>
@@ -162,25 +157,25 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate, compare, onCompar
       {/* Screen-reader equivalent of the dots, which live in the canvas. */}
       <ul className="hotspot-index">
         {organ.hotspots.map((hotspot) => (
-          <li key={hotspot.id}>{hotspot.label}: {hotspot.detail}</li>
+          <li key={hotspot.id}>{hotspot.label}：{hotspot.detail}</li>
         ))}
       </ul>
 
       {loading && slowLoad && (
         <div className="model-loader" role="status" aria-live="polite">
           <div className="loader-orbit"><Maximize2 size={20} /></div>
-          <strong>Preparing the {organ.name.toLowerCase()}</strong>
+          <strong>正在准备{organ.name}模型</strong>
           <span>{Math.max(8, Math.round(progress * 100))}%</span>
         </div>
       )}
 
       <button className="auto-rotate" type="button" onClick={() => onAutoRotate(!autoRotate)} aria-pressed={autoRotate}>
-        <RotateCcw size={14} /> Auto rotate
+        <RotateCcw size={14} /> 自动旋转
         <span className={`switch ${autoRotate ? "on" : ""}`}><i /></span>
       </button>
 
       <div className="view-caption">
-        <span>3D specimen · click a dot to explore</span>
+        <span>3D 标本 · 点击圆点探索结构</span>
         <strong>{organ.scientificName}</strong>
       </div>
     </section>
