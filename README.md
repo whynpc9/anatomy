@@ -102,12 +102,17 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 The additional organ models in `public/models/` come from open anatomical
 datasets and are used under their respective licenses:
 
-- `spleen.glb`, `gallbladder.glb`, `bladder.glb` — HuBMAP CCF 3D Reference
-  Object Library, licensed under
-  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- `spleen.glb`, `gallbladder.glb`, `bladder.glb`, `thymus.glb`,
+  `spinal-cord.glb`, `uterus.glb`, `ovary.glb`, `prostate.glb`, `ureter.glb`
+  (merged left + right) — HuBMAP CCF 3D Reference Object Library, licensed
+  under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
   Source: <https://ccf-ontology.hubmapconsortium.org/objects/v1.2/>
-  (fundus-down orientation baked into `gallbladder.glb`).
-- `stomach.glb`, `esophagus.glb` — BodyParts3D (FMA7148, FMA7131),
+  (orientation or material adjustments baked into `gallbladder.glb`,
+  `spinal-cord.glb` and `uterus.glb`).
+- `stomach.glb` (FMA7148), `esophagus.glb` (FMA7131), `trachea.glb` (FMA7394),
+  `appendix.glb` (FMA14542), `tongue.glb` (FMA54640), `ear.glb` (FMA52781,
+  one auricle extracted from the paired mesh), `adrenal.glb` (FMA9604,
+  left + right merged), `diaphragm.glb` (FMA13295) — BodyParts3D,
   (c) The Database Center for Life Science, licensed under
   [CC BY-SA 2.1 Japan](https://creativecommons.org/licenses/by-sa/2.1/jp/).
   Source: <https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html>
