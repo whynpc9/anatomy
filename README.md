@@ -96,3 +96,19 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## 3D Model Sources and Licenses
+
+The additional organ models in `public/models/` come from open anatomical
+datasets and are used under their respective licenses:
+
+- `spleen.glb`, `gallbladder.glb`, `bladder.glb` — HuBMAP CCF 3D Reference
+  Object Library, licensed under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+  Source: <https://ccf-ontology.hubmapconsortium.org/objects/v1.2/>
+  (fundus-down orientation baked into `gallbladder.glb`).
+- `stomach.glb`, `esophagus.glb` — BodyParts3D (FMA7148, FMA7131),
+  (c) The Database Center for Life Science, licensed under
+  [CC BY-SA 2.1 Japan](https://creativecommons.org/licenses/by-sa/2.1/jp/).
+  Source: <https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html>
+  (converted from OBJ to GLB, Z-up to Y-up rotation baked in).
