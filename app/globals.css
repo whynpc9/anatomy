@@ -43,7 +43,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .topbar {
   height: 68px;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 22px;
   max-width: 1720px;
@@ -77,16 +77,16 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .brand em { font-size: 12px; white-space: nowrap; }
 
 .search-box {
-  justify-self: end;
-  width: min(100%, 280px);
-  height: 44px;
-  padding: 0 16px;
+  width: 100%;
+  height: 40px;
+  margin: 1px 0 10px;
+  padding: 0 13px;
   display: flex;
   align-items: center;
   gap: 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,.28);
+  background: rgba(255,255,255,.42);
   color: var(--muted);
 }
 .search-box input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
@@ -128,7 +128,33 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 }
 .panel-heading button { border: 1px solid var(--line); background: rgba(255,255,255,.3); width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; cursor: pointer; }
 .panel-heading .mobile-close { display: none; }
+.system-filters {
+  display: flex;
+  gap: 6px;
+  padding: 2px 3px 11px;
+  overflow-x: auto;
+  flex: 0 0 auto;
+  scrollbar-width: none;
+}
+.system-filters::-webkit-scrollbar { display: none; }
+.system-filters button {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.36);
+  color: var(--muted);
+  padding: 5px 9px;
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+}
+.system-filters button.active {
+  color: #704f43;
+  border-color: rgba(216, 125, 105, .42);
+  background: rgba(253,234,226,.8);
+}
 .organ-list { display: flex; flex-direction: column; gap: 4px; min-height: 0; overflow: auto; scrollbar-width: none; }
+.empty-library { margin: 28px 8px; color: var(--muted); text-align: center; font-size: 12px; }
 .organ-item {
   width: 100%;
   min-height: 70px;
@@ -302,6 +328,33 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .description { margin: 22px 0 16px; font: 500 15px/1.42 var(--font-serif), serif; }
 .rule { height: 1px; background: var(--line); }
 .info-panel h2 { margin: 17px 0 10px; font-style: italic; font-weight: 500; }
+.hotspot-nav { margin-top: 15px; }
+.hotspot-nav-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.hotspot-nav-heading h2 { display: flex; align-items: center; gap: 6px; margin: 0; }
+.hotspot-nav-heading h2 svg { color: var(--coral); }
+.hotspot-nav-heading small { color: var(--muted); font-size: 9px; }
+.hotspot-nav-list { margin-top: 9px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.hotspot-nav-list button {
+  min-width: 0;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.32);
+  cursor: pointer;
+  color: #645b54;
+  font: 500 11px/1.2 var(--font-serif), serif;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hotspot-nav-list button > span { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--hotspot-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--hotspot-color), transparent 82%); }
+.hotspot-nav-list button:hover { border-color: color-mix(in srgb, var(--hotspot-color), transparent 52%); background: rgba(255,255,255,.66); }
+.hotspot-nav-list button.active { color: var(--ink); border-color: color-mix(in srgb, var(--hotspot-color), transparent 38%); background: color-mix(in srgb, var(--hotspot-color), white 91%); box-shadow: 0 5px 14px color-mix(in srgb, var(--hotspot-color), transparent 87%); }
 .key-facts { margin: 0; display: flex; flex-direction: column; gap: 11px; }
 .key-facts > div { display: grid; grid-template-columns: 105px 1fr; gap: 8px; align-items: baseline; }
 .key-facts dt { display: flex; gap: 8px; font: 500 13px var(--font-serif), serif; }
@@ -337,7 +390,6 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .app-shell { padding: 16px; }
   .topbar { gap: 12px; }
   .brand em { display: none; }
-  .search-box { display: none; }
   .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(700px, calc(100vh - 105px)); }
 }
 
@@ -346,6 +398,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .info-panel { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 12px 22px; max-height: none; }
   .info-panel .description, .info-panel .rule, .info-panel h2, .key-facts, .medical-note { grid-column: 2; }
   .info-kicker, .info-title-row { grid-column: 1; }
+  .info-panel .hotspot-nav { grid-column: 1; align-self: start; }
   .info-panel { height: 330px; }
   .workspace { height: auto; }
   .organ-library, .viewer-shell { height: 650px; }
@@ -375,6 +428,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .organ-list { display: grid; grid-template-columns: 1fr 1fr; }
   .organ-item { min-height: 76px; }
   .info-panel { height: auto; margin-top: 10px; display: block; border-radius: 22px; }
+  .hotspot-nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .viewer-tools { top: auto; bottom: 12px; left: 10px; right: 10px; transform: none; width: auto; height: 61px; flex-direction: row; justify-content: space-around; padding: 4px; border-radius: 15px; }
   .tool-button { width: 51px; height: 51px; }
   .tool-button:nth-last-child(1) { border: 0; border-radius: 12px; }

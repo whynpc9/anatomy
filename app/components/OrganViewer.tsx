@@ -18,13 +18,23 @@ type Props = {
   organ: Organ;
   autoRotate: boolean;
   onAutoRotate: (enabled: boolean) => void;
+  selectedHotspotId: string | null;
+  onHotspotSelect: (id: string | null) => void;
 };
 
-export function OrganViewer({ organ, autoRotate, onAutoRotate }: Props) {
+export function OrganViewer({
+  organ,
+  autoRotate,
+  onAutoRotate,
+  selectedHotspotId,
+  onHotspotSelect,
+}: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<AnatomyViewer | null>(null);
   const organRef = useRef(organ);
   const autoRotateRef = useRef(autoRotate);
+  const selectedHotspotRef = useRef(selectedHotspotId);
+  const onHotspotSelectRef = useRef(onHotspotSelect);
   const [selected, setSelected] = useState<Hotspot | null>(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -49,13 +59,25 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate }: Props) {
   }, [autoRotate]);
 
   useEffect(() => {
+    onHotspotSelectRef.current = onHotspotSelect;
+  }, [onHotspotSelect]);
+
+  useEffect(() => {
+    selectedHotspotRef.current = selectedHotspotId;
+    viewerRef.current?.selectHotspot(selectedHotspotId);
+  }, [selectedHotspotId]);
+
+  useEffect(() => {
     let cancelled = false;
     let viewer: AnatomyViewer | null = null;
 
     void import("../lib/three/viewer").then(({ AnatomyViewer: Viewer }) => {
       if (cancelled || !mountRef.current) return;
       viewer = new Viewer(mountRef.current, {
-        onSelect: setSelected,
+        onSelect: (hotspot) => {
+          setSelected(hotspot);
+          onHotspotSelectRef.current(hotspot?.id ?? null);
+        },
         onLoading: (isLoading, value) => {
           setLoading(isLoading);
           setProgress(value);
@@ -65,10 +87,19 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate }: Props) {
       viewerRef.current = viewer;
       viewer.setAutoRotate(autoRotateRef.current);
       const current = organRef.current;
-      viewer.setOrgan(current.model, current.hotspots, current.accent).catch(() => {
-        setLoading(false);
-        setProgress(0);
-      });
+      void viewer
+        .setOrgan(
+          current.model,
+          current.hotspots,
+          current.accent,
+          current.viewScale,
+          current.hotspotSize,
+        )
+        .then(() => viewer?.selectHotspot(selectedHotspotRef.current))
+        .catch(() => {
+          setLoading(false);
+          setProgress(0);
+        });
     });
 
     return () => {
@@ -79,10 +110,19 @@ export function OrganViewer({ organ, autoRotate, onAutoRotate }: Props) {
   }, []);
 
   useEffect(() => {
-    viewerRef.current?.setOrgan(organ.model, organ.hotspots, organ.accent).catch(() => {
-      setLoading(false);
-      setProgress(0);
-    });
+    void viewerRef.current
+      ?.setOrgan(
+        organ.model,
+        organ.hotspots,
+        organ.accent,
+        organ.viewScale,
+        organ.hotspotSize,
+      )
+      .then(() => viewerRef.current?.selectHotspot(selectedHotspotRef.current))
+      .catch(() => {
+        setLoading(false);
+        setProgress(0);
+      });
   }, [organ]);
 
   useEffect(() => viewerRef.current?.setAutoRotate(autoRotate), [autoRotate]);

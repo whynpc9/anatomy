@@ -45,6 +45,7 @@ export class AnatomyViewer {
 
   private width = 1;
   private height = 1;
+  private hotspotPixels = DOT_PIXELS;
   private isVisible = true;
   private isPageVisible = true;
 
@@ -239,7 +240,13 @@ export class AnatomyViewer {
     this.assets.prefetch(url);
   }
 
-  async setOrgan(modelUrl: string, hotspots: Hotspot[], accent: string) {
+  async setOrgan(
+    modelUrl: string,
+    hotspots: Hotspot[],
+    accent: string,
+    viewScale = 1,
+    hotspotSize = DOT_PIXELS,
+  ) {
     const request = ++this.loadRequest;
     this.select(null);
     this.callbacks.onLoading(true, 0);
@@ -254,7 +261,9 @@ export class AnatomyViewer {
       this.hotspots.clear();
       this.busy(0.8);
       await gsap.to(outgoing.pivot.scale, {
-        x: 0.72, y: 0.72, z: 0.72,
+        x: outgoing.pivot.scale.x * 0.72,
+        y: outgoing.pivot.scale.y * 0.72,
+        z: outgoing.pivot.scale.z * 0.72,
         duration: 0.34,
         ease: "power2.in",
         onUpdate: () => (this.dirty = true),
@@ -268,7 +277,7 @@ export class AnatomyViewer {
 
     let organ: LoadedOrgan;
     try {
-      organ = await this.assets.load(modelUrl, (progress) => {
+      organ = await this.assets.load(modelUrl, accent, (progress) => {
         if (request === this.loadRequest) this.callbacks.onLoading(true, progress);
       });
     } catch (error) {
@@ -278,20 +287,21 @@ export class AnatomyViewer {
     if (request !== this.loadRequest || this.disposed) return;
 
     this.organ = organ;
-    organ.pivot.scale.setScalar(1);
+    this.hotspotPixels = hotspotSize;
+    organ.pivot.scale.setScalar(viewScale);
     organ.pivot.position.set(0, 0, 0);
     this.scene.add(organ.pivot);
     organ.pivot.updateWorldMatrix(true, true);
 
     // Anchor the dots while the organ is still invisible, then play the intro.
     this.hotspots.attach(organ.pivot, hotspots, organ.meshes);
-    this.hotspots.setPixelSize(DOT_PIXELS, this.height, CAMERA_FOV);
+    this.hotspots.setPixelSize(this.hotspotPixels, this.height, CAMERA_FOV);
     if (this.crossSection) this.applyClipping(true);
 
     const glow = this.scene.getObjectByName("organ-glow") as THREE.PointLight | undefined;
     glow?.color.set(accent);
 
-    organ.pivot.scale.setScalar(0.58);
+    organ.pivot.scale.setScalar(0.58 * viewScale);
     organ.pivot.position.z = -1.3;
     this.busy(1.4);
     this.fade(organ, 1, 0.72);
@@ -300,7 +310,13 @@ export class AnatomyViewer {
     // loading panel.
     this.callbacks.onLoading(false, 1);
     gsap.timeline({ onUpdate: () => (this.dirty = true) })
-      .to(organ.pivot.scale, { x: 1, y: 1, z: 1, duration: 0.9, ease: "back.out(1.25)" }, 0)
+      .to(organ.pivot.scale, {
+        x: viewScale,
+        y: viewScale,
+        z: viewScale,
+        duration: 0.9,
+        ease: "back.out(1.25)",
+      }, 0)
       .to(organ.pivot.position, { z: 0, duration: 0.85, ease: "power3.out" }, 0)
       .to(this.camera.position, { z: 8.2, duration: 0.9, ease: "power2.out" }, 0.08);
   }
@@ -430,7 +446,7 @@ export class AnatomyViewer {
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.width, this.height, false);
-    this.hotspots.setPixelSize(DOT_PIXELS, this.height, CAMERA_FOV);
+    this.hotspots.setPixelSize(this.hotspotPixels, this.height, CAMERA_FOV);
     this.dirty = true;
   }
 
@@ -496,6 +512,13 @@ export class AnatomyViewer {
 
   clearSelection() {
     this.select(null);
+  }
+
+  /** Selects the same surface marker used by canvas picking, allowing the
+   *  information panel to act as a keyboard-accessible hotspot navigator. */
+  selectHotspot(id: string | null) {
+    if (id && !this.hotspots.list.some((marker) => marker.hotspot.id === id)) return;
+    this.select(id);
   }
 
   /** The callout is positioned imperatively so tracking a spinning model never

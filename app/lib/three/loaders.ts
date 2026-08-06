@@ -41,7 +41,7 @@ export class AnatomyAssetManager {
     void fetch(url, { priority: "low" } as RequestInit).catch(() => {});
   }
 
-  async load(url: string, onProgress?: (progress: number) => void): Promise<LoadedOrgan> {
+  async load(url: string, accent: string, onProgress?: (progress: number) => void): Promise<LoadedOrgan> {
     const cached = this.cache.get(url);
     if (cached) {
       this.cache.delete(url);
@@ -52,7 +52,7 @@ export class AnatomyAssetManager {
       return cached;
     }
 
-    const pending = this.inflight.get(url) ?? this.parse(url, onProgress);
+    const pending = this.inflight.get(url) ?? this.parse(url, accent, onProgress);
     this.inflight.set(url, pending);
     try {
       const organ = await pending;
@@ -65,7 +65,7 @@ export class AnatomyAssetManager {
     }
   }
 
-  private async parse(url: string, onProgress?: (progress: number) => void): Promise<LoadedOrgan> {
+  private async parse(url: string, accent: string, onProgress?: (progress: number) => void): Promise<LoadedOrgan> {
     const gltf = await this.loader.loadAsync(url, (event) => {
       if (event.total > 0) onProgress?.(event.loaded / event.total);
     });
@@ -103,6 +103,18 @@ export class AnatomyAssetManager {
         material.depthTest = true;
         material.side = THREE.FrontSide;
         if (material instanceof THREE.MeshStandardMaterial) {
+          // Several open anatomy datasets intentionally ship neutral grey
+          // materials. Give only those untextured, near-neutral surfaces a
+          // restrained organ tint so they remain legible against the warm
+          // viewer background without repainting authored colours.
+          const hsl = { h: 0, s: 0, l: 0 };
+          material.color.getHSL(hsl);
+          const channels = [material.color.r, material.color.g, material.color.b];
+          const chroma = Math.max(...channels) - Math.min(...channels);
+          if (!material.map && chroma < 0.16 && hsl.l > 0.55) {
+            const mix = THREE.MathUtils.clamp((hsl.l - 0.42) * 0.72, 0.28, 0.52);
+            material.color.lerp(new THREE.Color(accent), mix);
+          }
           // A tighter specular lobe sparkles on any surface with normal detail;
           // holding roughness a little higher keeps highlights stable while the
           // model turns.

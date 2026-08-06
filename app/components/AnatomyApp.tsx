@@ -5,6 +5,7 @@ import gsap from "gsap";
 import {
   Heart,
   LibraryBig,
+  LocateFixed,
   Search,
   Sparkles,
   Stethoscope,
@@ -56,13 +57,20 @@ export function AnatomyApp() {
   const [organId, setOrganId] = useState<OrganId>("heart");
   const [autoRotate, setAutoRotate] = useState(true);
   const [query, setQuery] = useState("");
+  const [system, setSystem] = useState("全部");
   const [mobileLibrary, setMobileLibrary] = useState(false);
+  const [selectedHotspotId, setSelectedHotspotId] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const prefetched = useRef(new Set<OrganId>());
   const organ = organById[organId];
+  const systems = useMemo(() => ["全部", ...new Set(organs.map((item) => item.system))], []);
   const filteredOrgans = useMemo(
-    () => organs.filter((item) => `${item.name} ${item.system}`.toLowerCase().includes(query.toLowerCase())),
-    [query],
+    () => organs.filter((item) => {
+      const matchesSystem = system === "全部" || item.system === system;
+      const searchText = `${item.name} ${item.scientificName} ${item.system}`.toLowerCase();
+      return matchesSystem && searchText.includes(query.trim().toLowerCase());
+    }),
+    [query, system],
   );
 
   useEffect(() => {
@@ -79,6 +87,7 @@ export function AnatomyApp() {
       image.src = `/anatomy/${id}/organ.webp`;
     }
     setOrganId(id);
+    setSelectedHotspotId(null);
     setMobileLibrary(false);
   };
 
@@ -97,10 +106,6 @@ export function AnatomyApp() {
           <strong>解剖工坊<sup>✦</sup></strong>
           <em>人体器官 3D 图鉴</em>
         </button>
-        <label className="search-box">
-          <Search size={17} />
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索器官或系统…" />
-        </label>
         <button className="mobile-library-trigger" onClick={() => setMobileLibrary(true)} aria-label="打开器官库"><LibraryBig size={20} /></button>
       </header>
 
@@ -109,6 +114,23 @@ export function AnatomyApp() {
           <div className="panel-heading">
             <span>器官库</span>
             <button aria-label="关闭器官库" className="mobile-close" onClick={() => setMobileLibrary(false)}><X size={17} /></button>
+          </div>
+          <label className="search-box">
+            <Search size={16} />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索器官或系统…" />
+          </label>
+          <div className="system-filters" aria-label="按系统筛选">
+            {systems.map((item) => (
+              <button
+                type="button"
+                key={item}
+                aria-pressed={system === item}
+                className={system === item ? "active" : ""}
+                onClick={() => setSystem(item)}
+              >
+                {item}
+              </button>
+            ))}
           </div>
           <div className="organ-list">
             {filteredOrgans.map((item) => (
@@ -128,6 +150,7 @@ export function AnatomyApp() {
                 {organId === item.id && <Heart className="favorite" size={14} fill="currentColor" />}
               </button>
             ))}
+            {filteredOrgans.length === 0 && <p className="empty-library">没有匹配的器官</p>}
           </div>
         </aside>
 
@@ -135,6 +158,8 @@ export function AnatomyApp() {
           organ={organ}
           autoRotate={autoRotate}
           onAutoRotate={setAutoRotate}
+          selectedHotspotId={selectedHotspotId}
+          onHotspotSelect={setSelectedHotspotId}
         />
 
         <aside className="info-panel" ref={contentRef}>
@@ -146,6 +171,31 @@ export function AnatomyApp() {
             </span>
           </div>
           <p className="description" data-reveal>{organ.description}</p>
+          <section className="hotspot-nav" aria-label={`${organ.name}结构导航`} data-reveal>
+            <div className="hotspot-nav-heading">
+              <h2><LocateFixed size={14} /> 结构导航</h2>
+              <small>点击在模型中定位</small>
+            </div>
+            <div className="hotspot-nav-list">
+              {organ.hotspots.map((hotspot) => (
+                <button
+                  key={hotspot.id}
+                  type="button"
+                  className={selectedHotspotId === hotspot.id ? "active" : ""}
+                  aria-pressed={selectedHotspotId === hotspot.id}
+                  aria-label={`${hotspot.label}：${hotspot.detail}`}
+                  title={hotspot.detail}
+                  onClick={() => setSelectedHotspotId(
+                    selectedHotspotId === hotspot.id ? null : hotspot.id,
+                  )}
+                  style={{ "--hotspot-color": hotspot.color } as React.CSSProperties}
+                >
+                  <span />
+                  {hotspot.label}
+                </button>
+              ))}
+            </div>
+          </section>
           <div className="rule" />
           <h2 data-reveal>关键数据</h2>
           <dl className="key-facts">
