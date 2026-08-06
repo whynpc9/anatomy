@@ -9,6 +9,7 @@ import {
   ScanLine,
   Search,
   Sparkles,
+  Undo2,
   X,
 } from "lucide-react";
 import type { Hotspot, Organ } from "../lib/anatomy-data";
@@ -153,7 +154,7 @@ export function OrganViewer({
     { id: "isolate", label: "隔离", icon: CircleDashed },
     { id: "section", label: "剖面", icon: ScanLine },
     { id: "layers", label: "分层", icon: Layers3 },
-    { id: "reset", label: "重置", icon: RotateCcw },
+    { id: "reset", label: "重置", icon: Undo2 },
   ];
 
   return (
@@ -162,19 +163,24 @@ export function OrganViewer({
       <div ref={mountRef} className="three-mount" />
 
       <div className="viewer-tools" aria-label="3D 查看器工具">
-        {tools.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            type="button"
-            className={`tool-button ${activeTool === id ? "active" : ""}`}
-            onClick={() => handleTool(id)}
-            aria-pressed={activeTool === id}
-            title={label}
-          >
-            <Icon size={19} strokeWidth={1.65} />
-            <span>{label}</span>
-          </button>
-        ))}
+        {tools.map(({ id, label, icon: Icon }) => {
+          // Rotate mirrors the auto-rotate switch rather than the one-shot
+          // activeTool state, so the button shows whether spinning is on.
+          const pressed = id === "rotate" ? autoRotate : activeTool === id;
+          return (
+            <button
+              key={id}
+              type="button"
+              className={`tool-button ${pressed ? "active" : ""}`}
+              onClick={() => handleTool(id)}
+              aria-pressed={pressed}
+              title={label}
+            >
+              <Icon size={19} strokeWidth={1.65} />
+              <span>{label}</span>
+            </button>
+          );
+        })}
       </div>
 
       <aside className="tip-note" aria-label="查看器操作提示">

@@ -68,10 +68,29 @@ npm run build  # 验证构建产物
 `db/`、`worker/`、`examples/` 是 vinext 模板的遗留物，当前页面没有用到。
 `npm test` 会先构建站点，再检查 50 个内容条目的模型、插图和来源文档是否完整。
 
+## Cloudflare 静态部署
+
+生产部署使用 Next.js 静态导出与 Cloudflare Workers Static Assets。首页、脚本、
+图片和 GLB 模型均作为静态资源提供，不需要 SSR Worker、D1 或 R2，也不会消耗
+Workers 请求与 CPU 配额。
+
+当前生产地址：<https://anatomy-atelier.whynpc.workers.dev>
+
+```bash
+npm run build:cloudflare
+npm run deploy:cloudflare
+```
+
+静态产物位于 `out/`，部署配置位于 `wrangler.jsonc`。首次部署前运行
+`npx wrangler login` 登录 Cloudflare。正式域名确定后，在构建环境设置
+`NEXT_PUBLIC_SITE_URL`，确保 Open Graph 图片等元数据使用正确的绝对地址。
+
 ## 常用命令
 
 - `npm run dev`：本地开发（默认 3000 端口，被占用时自动顺延）
 - `npm run build`：验证 vinext 构建产物
+- `npm run build:cloudflare`：生成不依赖服务端运行时的 `out/` 静态站点
+- `npm run deploy:cloudflare`：静态构建并部署到 Cloudflare Workers Static Assets
 - `npm run test:content`：不构建，快速检查器官数据、模型和插图是否一一对应
 - `npm run lint`：ESLint（`public/basis`、`public/draco` 下第三方
   解码器的既有告警可忽略）

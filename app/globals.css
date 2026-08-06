@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui;
+  --font-serif: "Songti SC", STSong, "Noto Serif CJK SC", Georgia;
   --ink: #2f2a27;
-  --muted: #8d847c;
+  --muted: #6f665d;
   --canvas: #f7f0e7;
   --paper: rgba(255, 251, 244, 0.82);
   --line: rgba(117, 91, 70, 0.18);
@@ -90,7 +92,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   color: var(--muted);
 }
 .search-box input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
-.search-box input::placeholder { color: #a49b93; }
+.search-box input::placeholder { color: #8d847c; }
 
 .mobile-library-trigger {
   display: flex;
@@ -104,7 +106,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 
 .workspace {
   max-width: 1720px;
-  height: min(760px, calc(100vh - 128px));
+  height: min(760px, calc(100vh - 162px));
   min-height: 620px;
   margin: 12px auto 0;
   display: grid;
@@ -123,7 +125,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .panel-heading { height: 33px; display: flex; align-items: center; justify-content: space-between; padding: 0 5px 10px; }
 .panel-heading > span, .info-kicker, .info-panel h2 {
   letter-spacing: .13em;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
 }
 .panel-heading button { border: 1px solid var(--line); background: rgba(255,255,255,.3); width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; cursor: pointer; }
@@ -135,6 +137,11 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   overflow-x: auto;
   flex: 0 0 auto;
   scrollbar-width: none;
+  /* The scroll-attachment pair paints a hint shadow on the right edge only
+     while more chips remain off-screen; the "local" cover hides it at the end. */
+  background:
+    linear-gradient(to right, transparent, rgb(255, 251, 244) 72%) local right center / 26px 100% no-repeat,
+    linear-gradient(to right, transparent, rgba(117, 91, 70, 0.14)) scroll right center / 20px 100% no-repeat;
 }
 .system-filters::-webkit-scrollbar { display: none; }
 .system-filters button {
@@ -144,7 +151,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   background: rgba(255,255,255,.36);
   color: var(--muted);
   padding: 5px 9px;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
   cursor: pointer;
 }
@@ -153,8 +160,19 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   border-color: rgba(216, 125, 105, .42);
   background: rgba(253,234,226,.8);
 }
-.organ-list { display: flex; flex-direction: column; gap: 4px; min-height: 0; overflow: auto; scrollbar-width: none; }
-.empty-library { margin: 28px 8px; color: var(--muted); text-align: center; font-size: 12px; }
+.organ-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: none;
+  background:
+    linear-gradient(transparent, rgb(255, 251, 244) 78%) local center bottom / 100% 34px no-repeat,
+    linear-gradient(transparent, rgba(117, 91, 70, 0.15)) scroll center bottom / 100% 24px no-repeat;
+}
+.empty-library { margin: 28px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); text-align: center; font-size: 12px; }
+.empty-library button { border: 0; padding: 0; background: transparent; color: var(--coral); cursor: pointer; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; }
 .organ-item {
   width: 100%;
   min-height: 70px;
@@ -182,7 +200,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 }
 .organ-glyph img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; transform: scale(1.14); }
 .organ-item b { display: block; font: 500 17px/1.1 var(--font-serif), serif; }
-.organ-item small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
+.organ-item small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
 .organ-item .favorite { color: #ef8d7d; }
 
 .viewer-shell {
@@ -221,7 +239,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   backdrop-filter: blur(18px);
   box-shadow: 0 12px 30px rgba(75,54,40,.08);
 }
-.tool-button { height: 60px; border: 0; border-radius: 12px; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; font: 500 9px/1 var(--font-serif), serif; }
+.tool-button { height: 60px; border: 0; border-radius: 12px; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; font: 500 10px/1 var(--font-serif), serif; }
 .tool-button.active { color: var(--coral); background: rgba(238,124,106,.08); }
 .tool-button:nth-last-child(1) { border-top: 1px solid var(--line); border-radius: 0 0 12px 12px; }
 
@@ -281,7 +299,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .hotspot-callout[data-side="left"] .callout-body:before { left: 100%; }
 .callout-body b { display: block; padding-left: 13px; font: 500 13px var(--font-serif), serif; }
 .callout-body b:before { content: ""; position: absolute; left: 12px; top: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--hotspot-color); }
-.callout-body small { display: block; margin-top: 3px; padding-left: 13px; color: var(--muted); font-size: 10px; line-height: 1.35; }
+.callout-body small { display: block; margin-top: 3px; padding-left: 13px; color: var(--muted); font-size: 11px; line-height: 1.35; }
 .callout-close { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
 .callout-close:hover { background: rgba(116,89,67,.09); }
 @keyframes callout-in { from { opacity: 0; transform: translateX(-6px) scale(.96); } }
@@ -302,22 +320,30 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   background: rgba(255,252,247,.88);
   box-shadow: 0 5px 14px rgba(65,45,32,.08);
   cursor: pointer;
-  font: 500 10px var(--font-serif), serif;
+  font: 500 11px var(--font-serif), serif;
 }
 .switch { width: 29px; height: 17px; padding: 2px; border-radius: 99px; background: #c8c2bb; }
-.switch i { display: block; width: 13px; height: 13px; border-radius: 50%; background: white; box-shadow: 0 1px 4px rgba(0,0,0,.17); }
-.switch.on { background: #70a9cb; }
+.switch i { display: block; width: 13px; height: 13px; border-radius: 50%; background: white; box-shadow: 0 1px 4px rgba(0,0,0,.17); transition: margin-left .18s ease; }
+.switch.on { background: var(--coral); }
 .switch.on i { margin-left: 12px; }
-.view-caption { position: absolute; left: 98px; bottom: 17px; display: flex; flex-direction: column; gap: 2px; color: var(--muted); font-size: 9px; letter-spacing: .1em; }
+.view-caption { position: absolute; left: 18px; bottom: 17px; display: flex; flex-direction: column; gap: 2px; color: var(--muted); font-size: 11px; letter-spacing: .1em; }
 .view-caption strong { color: var(--ink); font: 500 13px var(--font-serif), serif; letter-spacing: 0; }
 
 .model-loader { position: absolute; inset: 0; z-index: 6; display: grid; place-content: center; justify-items: center; gap: 8px; background: rgba(251,246,238,.45); backdrop-filter: blur(4px); }
 .model-loader strong { font: 500 18px var(--font-serif), serif; }
-.model-loader span { color: var(--muted); font-size: 10px; }
+.model-loader span { color: var(--muted); font-size: 11px; }
 .loader-orbit { width: 48px; height: 48px; border: 1px dashed var(--coral); border-radius: 50%; display: grid; place-items: center; color: var(--coral); animation: orbit 2.4s linear infinite; }
 @keyframes orbit { to { transform: rotate(360deg); } }
 
-.info-panel { padding: 21px 20px 17px; overflow: auto; scrollbar-width: none; }
+.info-panel {
+  padding: 21px 20px 17px;
+  overflow: auto;
+  scrollbar-width: none;
+  background:
+    linear-gradient(transparent, rgb(255, 251, 244) 78%) local center bottom / 100% 40px no-repeat,
+    linear-gradient(transparent, rgba(117, 91, 70, 0.16)) scroll center bottom / 100% 26px no-repeat,
+    var(--paper);
+}
 .info-kicker { display: flex; align-items: center; gap: 7px; color: #795c55; }
 .info-kicker svg { color: #ee8a7a; }
 .info-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 15px; }
@@ -332,7 +358,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .hotspot-nav-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .hotspot-nav-heading h2 { display: flex; align-items: center; gap: 6px; margin: 0; }
 .hotspot-nav-heading h2 svg { color: var(--coral); }
-.hotspot-nav-heading small { color: var(--muted); font-size: 9px; }
+.hotspot-nav-heading small { color: var(--muted); font-size: 11px; }
 .hotspot-nav-list { margin-top: 9px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 .hotspot-nav-list button {
   min-width: 0;
@@ -357,13 +383,13 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .hotspot-nav-list button.active { color: var(--ink); border-color: color-mix(in srgb, var(--hotspot-color), transparent 38%); background: color-mix(in srgb, var(--hotspot-color), white 91%); box-shadow: 0 5px 14px color-mix(in srgb, var(--hotspot-color), transparent 87%); }
 .key-facts { margin: 0; display: flex; flex-direction: column; gap: 11px; }
 .key-facts > div { display: grid; grid-template-columns: 105px 1fr; gap: 8px; align-items: baseline; }
-.key-facts dt { display: flex; gap: 8px; font: 500 13px var(--font-serif), serif; }
-.key-facts dt span { color: var(--coral); width: 16px; }
+.key-facts dt { display: flex; align-items: center; gap: 8px; font: 500 13px var(--font-serif), serif; }
+.key-facts dt svg { flex: none; color: var(--coral); }
 .key-facts dd { margin: 0; color: var(--muted); font: 500 12px/1.35 var(--font-serif), serif; }
 .medical-note, .fun-note { margin-top: 15px; display: flex; gap: 9px; padding: 10px; border-radius: 12px; }
 .medical-note { background: rgba(142,109,197,.065); color: #6d568f; }
 .fun-note { background: rgba(198,154,94,.09); color: #86663c; }
-.medical-note p, .fun-note p { margin: 0; font: 500 11px/1.35 var(--font-serif), serif; }
+.medical-note p, .fun-note p { margin: 0; font: 500 12px/1.4 var(--font-serif), serif; }
 .medical-note b, .fun-note b { display: block; margin-bottom: 2px; color: var(--ink); }
 .medical-note svg, .fun-note svg { flex: none; }
 
@@ -386,11 +412,25 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 
 .drawer-backdrop { display: none; }
 
+.site-footer {
+  max-width: 1720px;
+  margin: 10px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.site-footer a { display: inline-flex; align-items: center; gap: 5px; color: inherit; text-decoration: none; }
+.site-footer a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.site-footer > span { opacity: .45; }
+
 @media (max-width: 1350px) {
   .app-shell { padding: 16px; }
   .topbar { gap: 12px; }
   .brand em { display: none; }
-  .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(700px, calc(100vh - 105px)); }
+  .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(700px, calc(100vh - 139px)); }
 }
 
 @media (max-width: 1040px) {
@@ -433,8 +473,11 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .tool-button { width: 51px; height: 51px; }
   .tool-button:nth-last-child(1) { border: 0; border-radius: 12px; }
   .tool-button span { display: none; }
-  .auto-rotate { bottom: 82px; right: 10px; }
-  .view-caption { left: 12px; bottom: 84px; }
+  /* The toolbar's rotate button covers this on mobile; keeping the floating
+     switch too would stack three overlays over the model's lower edge. */
+  .auto-rotate { display: none; }
+  .view-caption { left: 14px; top: 14px; bottom: auto; }
+  .view-caption span { display: none; }
   .tip-note { width: 130px; min-height: 113px; padding: 11px; }
   .tip-note p { font-size: 12px; }
   .callout-body { width: 148px; top: -26px; }

@@ -1,16 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
 import "./globals.css";
-
-const sans = Noto_Sans_SC({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const serif = Noto_Serif_SC({
-  variable: "--font-serif",
-  subsets: ["latin"],
-});
 
 const OG_IMAGE = {
   url: "/og.jpg",
@@ -24,13 +13,13 @@ const OG_IMAGE = {
  * deployment does not advertise another origin's assets:
  *   1. NEXT_PUBLIC_SITE_URL — explicit override, wins everywhere
  *   2. VERCEL_PROJECT_PRODUCTION_URL — the project's stable production domain
- *   3. the original Cloudflare/OpenAI host
+ *   3. the Cloudflare Workers production host
  */
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "https://anatomy-atelier.openai.site");
+    : "https://anatomy-atelier.whynpc.workers.dev");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -74,11 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body
-        className={`${sans.variable} ${serif.variable}`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

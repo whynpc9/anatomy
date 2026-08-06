@@ -3,13 +3,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import {
+  Activity,
+  CodeXml,
+  Droplets,
+  GitFork,
   Heart,
   LibraryBig,
   LocateFixed,
+  MapPin,
+  Ruler,
   Search,
   Sparkles,
   Stethoscope,
+  Weight,
   X,
+  Zap,
 } from "lucide-react";
 import { OrganViewer } from "./OrganViewer";
 import { organById, organs, type Organ, type OrganId } from "../lib/anatomy-data";
@@ -150,7 +158,12 @@ export function AnatomyApp() {
                 {organId === item.id && <Heart className="favorite" size={14} fill="currentColor" />}
               </button>
             ))}
-            {filteredOrgans.length === 0 && <p className="empty-library">没有匹配的器官</p>}
+            {filteredOrgans.length === 0 && (
+              <p className="empty-library">
+                没有匹配的器官
+                <button type="button" onClick={() => { setQuery(""); setSystem("全部"); }}>清除筛选</button>
+              </p>
+            )}
           </div>
         </aside>
 
@@ -199,17 +212,27 @@ export function AnatomyApp() {
           <div className="rule" />
           <h2 data-reveal>关键数据</h2>
           <dl className="key-facts">
-            <div data-reveal><dt><span>◇</span> 大小</dt><dd>{organ.size}</dd></div>
-            <div data-reveal><dt><span>♙</span> 重量</dt><dd>{organ.weight}</dd></div>
-            <div data-reveal><dt><span>⌁</span> 每日</dt><dd>{organ.dailyFact}</dd></div>
-            <div data-reveal><dt><span>⌖</span> 位置</dt><dd>{organ.location}</dd></div>
-            <div data-reveal><dt><span>❋</span> 血液供应</dt><dd>{organ.bloodSupply}</dd></div>
-            <div data-reveal><dt><span>◈</span> 功能</dt><dd>{organ.function}</dd></div>
+            <div data-reveal><dt><Ruler size={14} strokeWidth={1.8} /> 大小</dt><dd>{organ.size}</dd></div>
+            <div data-reveal><dt><Weight size={14} strokeWidth={1.8} /> 重量</dt><dd>{organ.weight}</dd></div>
+            <div data-reveal><dt><Activity size={14} strokeWidth={1.8} /> 每日</dt><dd>{organ.dailyFact}</dd></div>
+            <div data-reveal><dt><MapPin size={14} strokeWidth={1.8} /> 位置</dt><dd>{organ.location}</dd></div>
+            <div data-reveal><dt><Droplets size={14} strokeWidth={1.8} /> 血液供应</dt><dd>{organ.bloodSupply}</dd></div>
+            <div data-reveal><dt><Zap size={14} strokeWidth={1.8} /> 功能</dt><dd>{organ.function}</dd></div>
           </dl>
           <div className="medical-note" data-reveal><Stethoscope size={16} /><p><b>医学意义</b>{organ.medical}</p></div>
           <div className="fun-note" data-reveal><Sparkles size={15} /><p><b>你知道吗</b>{organ.funFact}</p></div>
         </aside>
       </div>
+
+      <footer className="site-footer">
+        <a href="https://github.com/whynpc9/anatomy" target="_blank" rel="noreferrer">
+          <CodeXml size={13} /> GitHub
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/thebuggeddev/anatomy" target="_blank" rel="noreferrer">
+          <GitFork size={13} /> 原始项目 Anatomy Atelier
+        </a>
+      </footer>
 
       {mobileLibrary && <button className="drawer-backdrop" aria-label="关闭器官库" onClick={() => setMobileLibrary(false)} />}
     </main>
