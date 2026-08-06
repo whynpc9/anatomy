@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
 import type { Hotspot } from "../anatomy-data";
 import { AnatomyAssetManager, type LoadedOrgan } from "./loaders";
-import { HotspotLayer } from "./hotspots";
+import { HotspotLayer, type Marker } from "./hotspots";
 
 type ViewerCallbacks = {
   onLoading: (loading: boolean, progress: number) => void;
@@ -17,8 +17,14 @@ const PLINTH_Y = -2.5;
 const PLINTH_TOP = PLINTH_Y + 0.17;
 /** Slightly above eye level, so the plinth reads as a disc the organ sits on
  *  rather than an edge-on band across the background. */
-const HOME_CAMERA = { x: 0, y: 1.05, z: 8.2 };
+const HOME_CAMERA = { x: 0, y: 1.05, z: 7.6 };
 const HOME_TARGET = { x: 0, y: 0.02, z: 0 };
+const UP = new THREE.Vector3(0, 1, 0);
+/** Elevation gap (radians) inside which a marker already reads as facing the
+ *  camera — selection only tips the organ when the gap exceeds this. */
+const PITCH_COMFORT = 0.9;
+/** The furthest a selection may tip the organ towards or away from the camera. */
+const MAX_TIP = 0.5;
 
 export class AnatomyViewer {
   private renderer: THREE.WebGLRenderer;
@@ -66,6 +72,7 @@ export class AnatomyViewer {
   private dragged = false;
   private calloutEl: HTMLElement | null = null;
   private fadeTween: gsap.core.Tween | null = null;
+  private revealTween: gsap.core.Tween | null = null;
   private disposed = false;
 
   constructor(container: HTMLElement, callbacks: ViewerCallbacks) {
@@ -249,6 +256,8 @@ export class AnatomyViewer {
   ) {
     const request = ++this.loadRequest;
     this.select(null);
+    this.revealTween?.kill();
+    this.revealTween = null;
     this.callbacks.onLoading(true, 0);
 
     const outgoing = this.organ;
@@ -318,7 +327,7 @@ export class AnatomyViewer {
         ease: "back.out(1.25)",
       }, 0)
       .to(organ.pivot.position, { z: 0, duration: 0.85, ease: "power3.out" }, 0)
-      .to(this.camera.position, { z: 8.2, duration: 0.9, ease: "power2.out" }, 0.08);
+      .to(this.camera.position, { z: HOME_CAMERA.z, duration: 0.9, ease: "power2.out" }, 0.08);
   }
 
   private materials(organ: LoadedOrgan) {
@@ -453,6 +462,9 @@ export class AnatomyViewer {
   // ---------------------------------------------------------------- input
 
   private onControlStart = () => {
+    // The user grabbing the model takes precedence over a selection swing.
+    this.revealTween?.kill();
+    this.revealTween = null;
     this.interactionUntil = performance.now() + 3000;
     this.dirty = true;
   };
@@ -507,7 +519,66 @@ export class AnatomyViewer {
     this.selectedId = id;
     this.busy(0.4);
     const marker = this.hotspots.list.find((item) => item.hotspot.id === id);
+    if (marker) this.reveal(marker);
     this.callbacks.onSelect(marker?.hotspot ?? null);
+  }
+
+  /**
+   * Turns the organ so a freshly selected marker faces the camera. The yaw
+   * carries the marker's azimuth all the way to the camera's; the pitch only
+   * closes an elevation gap the facing test cannot bridge on its own, and
+   * never far enough to upend the specimen. The swing's angle sets the
+   * tween's length, so a back-side structure travels at the same rate as a
+   * near-side nudge.
+   */
+  private reveal(marker: Marker) {
+    const pivot = this.organ?.pivot;
+    if (!pivot) return;
+
+    // Directions from the organ's centre, which sits at the scene origin.
+    const direction = new THREE.Vector3().copy(marker.anchor).applyQuaternion(pivot.quaternion).normalize();
+    const toCamera = new THREE.Vector3().copy(this.camera.position).sub(pivot.position).normalize();
+
+    const cameraAzimuth = Math.atan2(toCamera.x, toCamera.z);
+    const yaw = THREE.MathUtils.euclideanModulo(
+      cameraAzimuth - Math.atan2(direction.x, direction.z) + Math.PI,
+      Math.PI * 2,
+    ) - Math.PI;
+    const yawQuat = new THREE.Quaternion().setFromAxisAngle(UP, yaw);
+
+    // Yaw leaves elevation untouched, so the gap can be measured before it.
+    const gap = Math.atan2(direction.y, Math.hypot(direction.x, direction.z))
+      - Math.atan2(toCamera.y, Math.hypot(toCamera.x, toCamera.z));
+    const pitch = Math.abs(gap) <= PITCH_COMFORT
+      ? 0
+      : THREE.MathUtils.clamp(gap - Math.sign(gap) * PITCH_COMFORT, -MAX_TIP, MAX_TIP);
+    // The horizontal axis perpendicular to the marker's azimuth once the yaw
+    // lands: a positive pitch lowers elevation, tipping a high structure down
+    // towards the viewer and a low one up.
+    const pitchAxis = new THREE.Vector3(Math.cos(cameraAzimuth), 0, -Math.sin(cameraAzimuth));
+    const pitchQuat = new THREE.Quaternion().setFromAxisAngle(pitchAxis, pitch);
+
+    const start = pivot.quaternion.clone();
+    const target = start.clone().premultiply(yawQuat).premultiply(pitchQuat);
+    const angle = start.angleTo(target);
+    if (angle < 0.02) return;
+
+    this.revealTween?.kill();
+    const state = { t: 0 };
+    const duration = THREE.MathUtils.clamp(0.35 + angle * 0.3, 0.4, 1.2);
+    this.busy(duration + 0.1);
+    this.revealTween = gsap.to(state, {
+      t: 1,
+      duration,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        pivot.quaternion.slerpQuaternions(start, target, state.t);
+        this.dirty = true;
+      },
+      onComplete: () => {
+        this.revealTween = null;
+      },
+    });
   }
 
   clearSelection() {
@@ -558,6 +629,8 @@ export class AnatomyViewer {
 
   reset() {
     this.select(null);
+    this.revealTween?.kill();
+    this.revealTween = null;
     this.tween(this.camera.position, { ...HOME_CAMERA, duration: 0.8, ease: "power3.out" });
     this.tween(this.controls.target, { ...HOME_TARGET, duration: 0.8, ease: "power3.out" });
     if (this.organ) this.tween(this.organ.pivot.rotation, { x: 0.05, y: -0.28, z: 0, duration: 0.8, ease: "power3.out" });
@@ -625,6 +698,7 @@ export class AnatomyViewer {
     this.loadRequest += 1;
     cancelAnimationFrame(this.frame);
     gsap.killTweensOf(this.camera.position);
+    this.revealTween?.kill();
     this.controls.removeEventListener("start", this.onControlStart);
     this.controls.dispose();
     this.resizeObserver.disconnect();
