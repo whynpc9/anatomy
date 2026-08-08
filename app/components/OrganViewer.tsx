@@ -211,7 +211,7 @@ export function OrganViewer({
         <div className="model-loader" role="status" aria-live="polite">
           <div className="loader-orbit"><Maximize2 size={20} /></div>
           <strong>正在准备{organ.name}模型</strong>
-          <span>{Math.max(8, Math.round(progress * 100))}%</span>
+          <span>{Math.round(progress * 100)}%</span>
         </div>
       )}
 

@@ -243,10 +243,6 @@ export class AnatomyViewer {
 
   // ---------------------------------------------------------------- organs
 
-  prefetch(url: string) {
-    this.assets.prefetch(url);
-  }
-
   async setOrgan(
     modelUrl: string,
     hotspots: Hotspot[],

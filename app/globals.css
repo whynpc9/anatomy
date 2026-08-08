@@ -123,7 +123,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 
 .organ-library { padding: 16px 14px 14px; display: flex; flex-direction: column; min-height: 0; }
 .panel-heading { height: 33px; display: flex; align-items: center; justify-content: space-between; padding: 0 5px 10px; }
-.panel-heading > span, .info-kicker, .info-panel h2 {
+.panel-heading > span, .specimen-label, .info-panel h2 {
   letter-spacing: .13em;
   font-size: 11px;
   font-weight: 600;
@@ -201,7 +201,6 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .organ-glyph img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; transform: scale(1.14); }
 .organ-item b { display: block; font: 500 17px/1.1 var(--font-serif), serif; }
 .organ-item small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
-.organ-item .favorite { color: #ef8d7d; }
 
 .viewer-shell {
   position: relative;
@@ -344,8 +343,8 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
     linear-gradient(transparent, rgba(117, 91, 70, 0.16)) scroll center bottom / 100% 26px no-repeat,
     var(--paper);
 }
-.info-kicker { display: flex; align-items: center; gap: 7px; color: #795c55; }
-.info-kicker svg { color: #ee8a7a; }
+.specimen-label { display: flex; align-items: center; gap: 7px; color: #795c55; }
+.specimen-label svg { color: #ee8a7a; }
 .info-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 15px; }
 .info-title-row h1 { margin: 0; font: 500 44px/.95 var(--font-serif), serif; letter-spacing: -.02em; }
 .info-title-row em { display: block; margin-top: 8px; font-size: 13px; }
@@ -437,7 +436,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .workspace { grid-template-columns: 210px minmax(450px,1fr); height: 690px; }
   .info-panel { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 12px 22px; max-height: none; }
   .info-panel .description, .info-panel .rule, .info-panel h2, .key-facts, .medical-note { grid-column: 2; }
-  .info-kicker, .info-title-row { grid-column: 1; }
+  .specimen-label, .info-title-row { grid-column: 1; }
   .info-panel .hotspot-nav { grid-column: 1; align-self: start; }
   .info-panel { height: 330px; }
   .workspace { height: auto; }

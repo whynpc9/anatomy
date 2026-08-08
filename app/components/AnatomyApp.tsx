@@ -146,6 +146,7 @@ export function AnatomyApp() {
                 type="button"
                 key={item.id}
                 className={`organ-item ${organId === item.id ? "active" : ""}`}
+                aria-current={organId === item.id}
                 onClick={() => selectOrgan(item.id)}
                 onPointerEnter={() => prefetchOrgan(item.id)}
                 onFocus={() => prefetchOrgan(item.id)}
@@ -155,7 +156,6 @@ export function AnatomyApp() {
                   <OrganArt organ={item} asset="thumb" alt={`${item.name}缩略图`} size={47} />
                 </span>
                 <span><b>{item.name}</b><small>{item.system}</small></span>
-                {organId === item.id && <Heart className="favorite" size={14} fill="currentColor" />}
               </button>
             ))}
             {filteredOrgans.length === 0 && (
@@ -176,7 +176,7 @@ export function AnatomyApp() {
         />
 
         <aside className="info-panel" ref={contentRef}>
-          <div className="info-kicker" data-reveal><Heart size={13} fill="currentColor" /> {organ.name}</div>
+          <div className="specimen-label" data-reveal><Heart size={13} fill="currentColor" /> {organ.system} · {organ.scientificName}</div>
           <div className="info-title-row" data-reveal>
             <div><h1>{organ.name}</h1><em>{organ.poetic}</em></div>
             <span className="specimen-stamp">

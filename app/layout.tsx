@@ -9,17 +9,12 @@ const OG_IMAGE = {
 };
 
 /**
- * Absolute URLs for og:image and friends. Resolved per host so a preview
- * deployment does not advertise another origin's assets:
- *   1. NEXT_PUBLIC_SITE_URL — explicit override, wins everywhere
- *   2. VERCEL_PROJECT_PRODUCTION_URL — the project's stable production domain
- *   3. the Cloudflare Workers production host
+ * Absolute URLs for og:image and friends. NEXT_PUBLIC_SITE_URL overrides the
+ * default production host so a preview deployment does not advertise another
+ * origin's assets.
  */
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "https://anatomy-atelier.whynpc.workers.dev");
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://anatomy-atelier.whynpc.workers.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

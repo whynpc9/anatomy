@@ -1,32 +1,17 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
+import { organs } from "../app/lib/anatomy-data.ts";
 
 const projectRoot = new URL("../", import.meta.url);
-const dataUrl = new URL("../app/lib/anatomy-data.ts", import.meta.url);
 
-async function readOrgans() {
-  const source = await readFile(dataUrl, "utf8");
-  const matches = [...source.matchAll(
-    /\n  \{\n    id: "([^"]+)",([\s\S]*?)(?=\n  \{\n    id: "|\n\];)/g,
-  )];
-
-  return matches.map((match) => {
-    const model = match[2].match(/\n    model: "([^"]+)",/)?.[1];
-    const illustrated = match[2].match(/\n    illustrated: (true|false),/)?.[1];
-    const hotspots = [...match[2].matchAll(/\{ id: "[^"]+", label: "([^"]+)"/g)]
-      .map((hotspot) => hotspot[1]);
-
-    assert.ok(model, `${match[1]} must register a model`);
-    assert.ok(illustrated, `${match[1]} must declare illustration availability`);
-
-    return {
-      id: match[1],
-      model,
-      illustrated: illustrated === "true",
-      hotspots,
-    };
-  });
+function readOrgans() {
+  return organs.map(({ id, model, illustrated, hotspots }) => ({
+    id,
+    model,
+    illustrated,
+    hotspots: hotspots.map((hotspot) => hotspot.label),
+  }));
 }
 
 async function assertNonEmpty(relativePath) {

@@ -65,7 +65,8 @@ npm run build  # 验证构建产物
 而项目未声明任何 D1/R2 绑定，因此 dev 回退到 Vite 的 Node 运行时。
 `npm run build` 仍走 Cloudflare 插件，部署产物不受影响。
 
-`db/`、`worker/`、`examples/` 是 vinext 模板的遗留物，当前页面没有用到。
+`worker/index.ts` 是 vinext 的服务端入口，只有 `npm run build` 和
+`npm start` 会用到；生产静态部署不经过它。
 `npm test` 会先构建站点，再检查 50 个内容条目的模型、插图和来源文档是否完整。
 
 ## Cloudflare 静态部署

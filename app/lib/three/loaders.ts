@@ -35,12 +35,6 @@ export class AnatomyAssetManager {
     return Boolean(this.current?.mixer);
   }
 
-  /** Warms the HTTP cache so switching organs feels instant. */
-  prefetch(url: string) {
-    if (this.cache.has(url) || this.inflight.has(url)) return;
-    void fetch(url, { priority: "low" } as RequestInit).catch(() => {});
-  }
-
   async load(url: string, accent: string, onProgress?: (progress: number) => void): Promise<LoadedOrgan> {
     const cached = this.cache.get(url);
     if (cached) {
