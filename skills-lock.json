@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-slop-taste": {
+      "source": "zerob13/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-slop-taste/SKILL.md",
+      "computedHash": "60776f89e4cfe42080069e383f6a029745b92138f422e7d082e399105054aa36"
+    },
+    "kill-ai-slop": {
+      "source": "yetone/kill-ai-slop",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "459c60c76a498a08096117c9735ee5b1dccfaa72838b8de58c18cb667abdd2c0"
+    }
+  }
+}
