@@ -40,6 +40,10 @@ Kristen Browne 制作，HuBMAP CCF 团队发布。项目内模型保留原有子
 - `large-intestine.glb`：`SBU_F_Intestine_Large.glb`，女性参考
 - `pelvis.glb`：`VH_F_Pelvis.glb`，女性骨盆参考
 - `knee-joint.glb`：`VH_F_Knee_L.glb`，女性左膝参考
+- `brainstem-cerebellum.glb`：从 `brain-hubmap.glb` 提取双侧小脑半球、蚓部、
+  深部核团、小脑脚，以及中脑、脑桥和延髓结构
+- `coronary-circulation.glb`：从 `blood-vessels.glb` 提取左右冠状动脉、前降支、
+  回旋支、缘支和主要心静脉，再与同坐标系的 `heart-hubmap.glb` 合并；女性参考
 
 下载目录：<https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models>
 
@@ -76,8 +80,31 @@ Bueckle, A., Börner, K. (2022). *HuBMAP CCF 3D Reference Object Library*.
 - `hip-joint.glb`：髋骨、股骨、髋臼唇、关节囊和主要韧带
 - `ankle-foot.glb`：小腿远端、足骨与主要踝足韧带
 
+2026-08-19 继续使用同一官方发布页增加 5 个条目，不覆盖已有模型：
+
+- `skull.glb`：`overview-colored-skull.glb`，保留彩色分骨材质
+- `spine.glb`：从已入库的 Overview skeleton 中提取 C1–C7、T1–T12、
+  L1–L5、骶骨和尾骨
+- `hand-wrist.glb`：官方 `hand.glb`，包含腕骨、掌指骨以及主要韧带、肌腱和肌群
+- `rotator-cuff.glb`：从 `upper-limb.glb` 提取右侧肩胛骨、锁骨、肱骨以及
+  冈上肌、冈下肌、小圆肌和肩胛下肌
+- `brachial-plexus.glb`：从 `upper-limb.glb` 提取右侧 C5–T1 神经根、三干、
+  前后股、三束和主要终末神经，并保留锁骨和肩胛骨作为空间参照
+
+2026-08-19 又从官方的下肢、盆底和腹股沟区域模型提取 3 个条目：
+
+- `sciatic-nerve.glb`：从 `lower-limb.glb` 提取右侧坐骨神经、胫神经、腓总神经、
+  腓浅神经、腓深神经，并保留右侧髋骨、股骨、骶骨和梨状肌作为空间参照
+- `pelvic-floor-perineum.glb`：从官方 `pelvicfloor.glb` 提取男性右侧提肛肌、
+  尾骨肌、肛门外括约肌、会阴膜、阴部神经和阴部管，并保留半侧骨盆参照
+- `inguinal-canal.glb`：从官方 `inguinal-ligament.glb` 提取男性右侧腹壁肌层、
+  腹股沟韧带、浅环内外侧脚、髂耻束、腔隙韧带、耻骨梳韧带和输精管
+
 来源：<https://anatomytool.org/open3dmodel-create>。原始 GLB 使用 Draco；仓库内通过
 `scripts/extract-gltf-nodes.mjs` 按解剖节点提取，再转为当前查看器使用的 Meshopt。
+本批次的区域页面分别为：
+<https://anatomytool.org/content/open3danatomy-3d-model-pelvic-floor-and-perineum-english-labels>、
+<https://anatomytool.org/content/open3danatomy-3d-model-inguinal-ligament-and-related-structures-english-labels>。
 
 ### Z-Anatomy
 
@@ -91,6 +118,21 @@ Bueckle, A., Börner, K. (2022). *HuBMAP CCF 3D Reference Object Library*.
 
 来源：<https://github.com/LluisV/Z-Anatomy>。这些模型以 BodyParts3D 为基础并由
 Z-Anatomy 继续整理；使用 `scripts/extract-fbx-nodes.mjs` 转换并保留结构节点。
+
+2026-08-19 又从同一 Unity 项目的 `MuscularSystem100.fbx` 提取 60 个主要表层肌
+网格，生成 `muscular-system.glb`。当前对象覆盖胸锁乳突肌、斜方肌、三角肌、胸大肌、
+腹直肌、腹外斜肌、背阔肌、肱二头肌、肱三头肌、臀大/中肌、股四头肌、缝匠肌、
+股二头肌、腓肠肌、比目鱼肌和胫骨前肌等，定位是“全身主要肌群概览”，不是包含
+所有深层肌、筋膜和肌腱的完整数字人体。原 FBX 转为 GLB 后以 Meshopt 压缩，并将
+几何简化到适合网页实时查看的级别。
+
+同日从 `Resources/Models/FBX/NervousSystem100.fbx` 提取 12 对脑神经、视交叉、
+中脑、脑桥、延髓及双侧大脑白质参照，生成 `cranial-nerves.glb`。为避免 FBX 中共用
+的白质材质让细小神经难以辨认，`scripts/style-cranial-nerves.mjs` 将脑神经设为金黄色，
+并把大脑白质设为半透明参照。脑神经网格在 Z-Anatomy 的来源
+说明中标注为 University of Dundee、CC BY 4.0；其余 Z-Anatomy 整理内容仍按项目的
+CC BY-SA 4.0 边界处理。原始文件：
+<https://github.com/LluisV/Z-Anatomy/blob/PC-Version/Resources/Models/FBX/NervousSystem100.fbx>。
 
 ### BodyParts3D 4.0
 
@@ -137,6 +179,16 @@ Z-Anatomy 继续整理；使用 `scripts/extract-fbx-nodes.mjs` 转换并保留�
 每张图保存为 720×720 的 `organ.webp`，并派生 180×180 的 `thumb.webp`。
 `testis-epididymis` 连续两次被图像安全系统误判为性内容，未使用不相干图片替代，
 继续使用字符回退。
+
+2026-08-19 使用同一内置图像生成模式，为全身肌肉系统、颅骨、脊柱、手与腕、
+旋转袖和臂丛神经生成 6 张统一风格的专属插图。提示词继续要求暖米白纸、水彩和彩铅、
+粉色与淡紫色背景晕染、主体居中、无文字和无标注；主图保存为 720×720 WebP，
+缩略图保存为 180×180 WebP。全身肌肉图的前两次输出被安全系统误判拦截，最终采用
+穿着不透明教学短裤的运动生物力学示意图，避免用不相干资产替代。
+
+同日为脑干与小脑、冠状循环、右侧坐骨神经、十二对脑神经、男性右侧盆底与会阴、
+男性右侧腹股沟管生成 6 张同风格导航插图。盆底和腹股沟插图只展示骨盆、肌肉、
+筋膜、韧带和神经的临床解剖关系，不展示外生殖器；所有图片仍不含文字或标注。
 
 ## 引入新模型的验收条件
 

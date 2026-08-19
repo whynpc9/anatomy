@@ -20,9 +20,9 @@ async function assertNonEmpty(relativePath) {
   assert.ok(file.size > 1_000, `${relativePath} must not be empty`);
 }
 
-test("registers the complete 50-item anatomy collection", async () => {
+test("registers the complete 62-item anatomy collection", async () => {
   const organs = await readOrgans();
-  assert.equal(organs.length, 50);
+  assert.equal(organs.length, 62);
   assert.equal(new Set(organs.map(({ id }) => id)).size, organs.length);
   assert.deepEqual(
     organs.filter(({ illustrated }) => !illustrated).map(({ id }) => id).sort(),
@@ -79,6 +79,15 @@ test("documents model provenance and license boundaries", async () => {
   assert.match(sources, /v1\.4/);
   assert.match(sources, /heart-hubmap\.glb/);
   assert.match(sources, /testis-epididymis/);
+  assert.match(sources, /muscular-system\.glb/);
+  assert.match(sources, /rotator-cuff\.glb/);
+  assert.match(sources, /brachial-plexus\.glb/);
+  assert.match(sources, /brainstem-cerebellum\.glb/);
+  assert.match(sources, /coronary-circulation\.glb/);
+  assert.match(sources, /sciatic-nerve\.glb/);
+  assert.match(sources, /cranial-nerves\.glb/);
+  assert.match(sources, /pelvic-floor-perineum\.glb/);
+  assert.match(sources, /inguinal-canal\.glb/);
   assert.match(sources, /原项目资产/);
 });
 
@@ -108,6 +117,18 @@ test("keeps the audited high-detail structures covered by hotspots", async () =>
     "testis-epididymis": ["右睾丸", "左附睾"],
     "salivary-glands": ["右腮腺", "左下颌下腺", "右舌下腺"],
     pharynx: ["鼻咽", "口咽", "喉咽"],
+    "muscular-system": ["胸锁乳突肌", "腹直肌", "股四头肌"],
+    skull: ["额骨", "蝶骨", "下颌骨"],
+    spine: ["寰椎与枢椎", "胸椎", "骶骨"],
+    "hand-wrist": ["舟骨", "月骨", "头状骨"],
+    "rotator-cuff": ["冈上肌", "冈下肌", "小圆肌", "肩胛下肌"],
+    "brachial-plexus": ["C5–T1 神经根", "上、中、下干", "臂丛三束"],
+    "brainstem-cerebellum": ["中脑", "脑桥", "延髓", "小脑蚓部", "小脑脚"],
+    "coronary-circulation": ["左冠状动脉主干", "前降支", "回旋支", "右冠状动脉", "冠状窦"],
+    "sciatic-nerve": ["梨状肌出口", "坐骨神经主干", "胫神经与腓总神经分叉", "胫神经", "腓总神经"],
+    "cranial-nerves": ["I 嗅神经", "V 三叉神经", "VII 面神经", "X 迷走神经", "XII 舌下神经"],
+    "pelvic-floor-perineum": ["髂尾肌", "耻骨直肠肌与耻骨尾骨肌", "肛门外括约肌", "阴部神经"],
+    "inguinal-canal": ["腹股沟韧带", "腹股沟浅环", "髂耻束", "腔隙韧带", "输精管"],
   };
 
   for (const [id, labels] of Object.entries(required)) {

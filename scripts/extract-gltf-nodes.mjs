@@ -4,6 +4,7 @@ import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { prune } from "@gltf-transform/functions";
 import draco3d from "draco3dgltf";
+import { MeshoptDecoder, MeshoptEncoder } from "meshoptimizer";
 
 const args = process.argv.slice(2);
 const listOnly = args[0] === "--list";
@@ -19,6 +20,8 @@ if (!inputPath || (!listOnly && (!outputPath || patterns.length === 0))) {
   );
   process.exitCode = 1;
 } else {
+  await MeshoptDecoder.ready;
+  await MeshoptEncoder.ready;
   const expressions = patterns.map((pattern) => new RegExp(pattern, "i"));
   const matches = (name) => expressions.length === 0 || expressions.some((expression) => expression.test(name));
 
@@ -27,6 +30,8 @@ if (!inputPath || (!listOnly && (!outputPath || patterns.length === 0))) {
     .registerDependencies({
       "draco3d.decoder": await draco3d.createDecoderModule(),
       "draco3d.encoder": await draco3d.createEncoderModule(),
+      "meshopt.decoder": MeshoptDecoder,
+      "meshopt.encoder": MeshoptEncoder,
     });
   const document = await io.read(inputPath);
   const nodes = document.getRoot().listNodes();
