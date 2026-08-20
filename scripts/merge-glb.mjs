@@ -1,31 +1,10 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile } from "node:fs/promises";
-import { Scene } from "three";
-import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
-
-class NodeFileReader {
-  result = null;
-  onloadend = null;
-
-  readAsArrayBuffer(blob) {
-    void blob.arrayBuffer().then((result) => {
-      this.result = result;
-      queueMicrotask(() => this.onloadend?.());
-    });
-  }
-
-  readAsDataURL(blob) {
-    void blob.arrayBuffer().then((result) => {
-      this.result = `data:${blob.type};base64,${Buffer.from(result).toString("base64")}`;
-      queueMicrotask(() => this.onloadend?.());
-    });
-  }
-}
-
-globalThis.FileReader ??= NodeFileReader;
+import { NodeIO } from "@gltf-transform/core";
+import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
+import { dedup, mergeDocuments, unpartition } from "@gltf-transform/functions";
+import draco3d from "draco3dgltf";
+import { MeshoptDecoder, MeshoptEncoder } from "meshoptimizer";
 
 const [outputPath, ...inputPaths] = process.argv.slice(2);
 
@@ -33,21 +12,32 @@ if (!outputPath || inputPaths.length < 2) {
   console.error("Usage: node scripts/merge-glb.mjs <output.glb> <input-a.glb> <input-b.glb> [...]");
   process.exitCode = 1;
 } else {
-  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const outputScene = new Scene();
+  await MeshoptDecoder.ready;
+  await MeshoptEncoder.ready;
+  const io = new NodeIO()
+    .registerExtensions(ALL_EXTENSIONS)
+    .registerDependencies({
+      "draco3d.decoder": await draco3d.createDecoderModule(),
+      "draco3d.encoder": await draco3d.createEncoderModule(),
+      "meshopt.decoder": MeshoptDecoder,
+      "meshopt.encoder": MeshoptEncoder,
+    });
 
-  for (const inputPath of inputPaths) {
-    const source = await readFile(inputPath);
-    const data = source.buffer.slice(source.byteOffset, source.byteOffset + source.byteLength);
-    const gltf = await loader.parseAsync(data, "");
-    outputScene.add(gltf.scene);
+  const target = await io.read(inputPaths[0]);
+  for (const inputPath of inputPaths.slice(1)) {
+    mergeDocuments(target, await io.read(inputPath));
   }
 
-  const exporter = new GLTFExporter();
-  const glb = await exporter.parseAsync(outputScene, {
-    binary: true,
-    onlyVisible: false,
-  });
-  await writeFile(outputPath, Buffer.from(glb));
+  const root = target.getRoot();
+  const scenes = root.listScenes();
+  const mainScene = scenes[0];
+  for (const scene of scenes.slice(1)) {
+    for (const node of scene.listChildren()) mainScene.addChild(node);
+    scene.dispose();
+  }
+  root.setDefaultScene(mainScene);
+
+  await target.transform(dedup(), unpartition());
+  await io.write(outputPath, target);
   console.log(`Merged ${inputPaths.length} files into ${outputPath}`);
 }

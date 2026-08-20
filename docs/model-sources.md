@@ -69,6 +69,12 @@ Bueckle, A., Börner, K. (2022). *HuBMAP CCF 3D Reference Object Library*.
 和胰腺模型；对照资产暂不进入器官列表。HuBMAP 的皮肤对象是全身表面壳层，不能
 替代当前展示表皮、真皮和皮下组织的教学剖面，因此也没有覆盖 `skin.glb`。
 
+2026-08-20 使用 v1.4 的 `3d-vh-f-trachea.glb`（女性参考）替换了 `trachea.glb`
+原 BodyParts3D 版本。新文件保留 `VH_F_trachea`、`VH_F_tracheal_cartilage` 和
+`VH_F_carina` 三个子结构节点，经 Meshopt 压缩；热点改为定位气管软骨环、膜性后壁
+和气管杈，条目 ID 与归一化约定不变。压缩流程会丢弃外膜节点的名称，需按网格
+对应关系补回 `VH_F_trachea` 节点名后再入库。
+
 ### Open3DModel / AnatomyTOOL
 
 许可：CC BY-SA。2026-08-06 下载官方 GLB 选择模型，并从右侧上、下肢文件按节点名
@@ -134,6 +140,24 @@ Z-Anatomy 继续整理；使用 `scripts/extract-fbx-nodes.mjs` 转换并保留�
 CC BY-SA 4.0 边界处理。原始文件：
 <https://github.com/LluisV/Z-Anatomy/blob/PC-Version/Resources/Models/FBX/NervousSystem100.fbx>。
 
+2026-08-20 又从 `Joints100.fbx` 与 `SkeletalSystem100.fbx` 提取 2 个条目。
+两个 FBX 同属一套体坐标系，跨文件合并后用 `scripts/verify-merge.mjs` 做了
+顶点级贴合校验（关节盘与髁突、椎间盘与相邻椎体的最近顶点距离均接近 0）：
+
+- `tmj.glb`：右侧颞下颌关节，含关节盘、关节囊和颞下颌（外侧）韧带，
+  并保留下颌骨与右侧颞骨作为空间参照。注意上游 `Joints100.fbx` 中
+  颞下颌韧带的 l/r 标记与关节盘、关节囊相反：经与 `SkeletalSystem100.fbx`
+  右侧颞骨的空间比对，取标记为 `Lateral_temporomandibular_ligamentl` 的
+  网格作为解剖右侧，提取记录在此留存备查。
+- `intervertebral-discs.glb`：C2–S1 全部 23 个椎间盘、前纵韧带、后纵韧带、
+  棘上韧带和棘间韧带，并保留 C1 至骶骨的全部椎骨作为空间参照。
+
+`SkeletalSystem100.fbx` 的提取产物中单个骨骼网格被拆成数千个碎片 primitive，
+已用 `scripts/consolidate-glb.mjs` 按材质合并为每网格少量 primitive，再经
+`scripts/merge-glb.mjs`（gltf-transform 实现，保留节点名称）合并；两个条目分别由
+`scripts/style-tmj.mjs` 和 `scripts/style-intervertebral-discs.mjs` 设置骨骼、
+椎间盘（关节盘）、韧带和关节囊的区分色，最后以 Meshopt 压缩。
+
 ### BodyParts3D 4.0
 
 许可：[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。指定署名：
@@ -141,7 +165,6 @@ CC BY-SA 4.0 边界处理。原始文件：
 
 - `stomach.glb`：FMA7148
 - `esophagus.glb`：FMA7131
-- `trachea.glb`：FMA7394
 - `appendix.glb`：FMA14542
 - `tongue.glb`：FMA54640
 - `ear.glb`：FMA52781，取成对网格中的单侧耳廓
@@ -151,6 +174,7 @@ CC BY-SA 4.0 边界处理。原始文件：
 
 这些文件由 OBJ 转换为 GLB，并烘焙了 Z-up 到 Y-up 的旋转。它们的网格与材质
 明显简于 HuBMAP 模型，后续替换时应保持同一器官 ID 和热点归一化约定。
+其中 `trachea.glb` 已于 2026-08-20 替换为 HuBMAP v1.4 版本（见上文）。
 
 ### 原项目资产
 
@@ -190,12 +214,16 @@ CC BY-SA 4.0 边界处理。原始文件：
 男性右侧腹股沟管生成 6 张同风格导航插图。盆底和腹股沟插图只展示骨盆、肌肉、
 筋膜、韧带和神经的临床解剖关系，不展示外生殖器；所有图片仍不含文字或标注。
 
+2026-08-20 为新增的 `tmj` 与 `intervertebral-discs` 两个条目生成同风格导航插图；
+均采用象牙色纸张、水彩解剖图与粉紫色淡晕背景，不含文字或标注。
+
 ## 引入新模型的验收条件
 
 1. 记录稳定来源 URL、原文件名、版本、作者和许可证。
 2. 确认许可证允许项目所需的修改、再分发和部署方式。
 3. 检查性别、年龄、侧别和姿态，不把单侧或特定人群模型描述为通用标本。
 4. 检查网格、材质、纹理、法线、坐标方向和浏览器加载体积。
-5. 使用 `scripts/inspect-glb.mjs` 在查看器的归一化坐标中定位热点。
+5. 使用 `scripts/inspect-glb.mjs` 在查看器的归一化坐标中定位热点；需要把热点
+   钉在网格表面时，可用 `scripts/surface-points.mjs` 输出逐轴极值顶点。
 6. 成对对象可用 `scripts/merge-glb.mjs` 合并，但必须保留原始来源记录。
 7. 文案与热点至少经过一次医学内容复核；页面继续保留科普用途声明。

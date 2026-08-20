@@ -60,7 +60,9 @@ export type OrganId =
   | "sciatic-nerve"
   | "cranial-nerves"
   | "pelvic-floor-perineum"
-  | "inguinal-canal";
+  | "inguinal-canal"
+  | "tmj"
+  | "intervertebral-discs";
 
 export type Hotspot = {
   id: string;
@@ -604,9 +606,9 @@ export const organs: Organ[] = [
     funFact: "C 形软骨环的缺口朝后，给身后的食管留出吞咽扩张的空间。",
     illustrated: true,
     hotspots: [
-      { id: "cricoid", label: "环状软骨", detail: "气管的起始支架", position: [0, 1.7, 0.3], color: "#6393d8" },
-      { id: "rings", label: "气管软骨环", detail: "保持气道持续开放", position: [-0.2, 0, 0.55], color: "#f2a33b" },
-      { id: "carina", label: "气管杈", detail: "分为左、右主支气管", position: [0, -1.8, 0.2], color: "#ee7c6a" },
+      { id: "rings", label: "气管软骨环", detail: "C 形透明软骨保持气道持续开放", position: [-0.11, 0.99, 0.91], color: "#f2a33b" },
+      { id: "membrane", label: "气管膜性后壁", detail: "软骨环缺口处的平滑肌壁，为身后的食管留出吞咽空间", position: [0.14, -0.46, -0.67], color: "#6393d8" },
+      { id: "carina", label: "气管杈", detail: "分为左、右主支气管", position: [0.11, -1.9, -1.06], color: "#ee7c6a" },
     ],
   },
   {
@@ -1836,6 +1838,64 @@ export const organs: Organ[] = [
       { id: "lacunar-ligament", label: "腔隙韧带", detail: "腹股沟韧带内侧端向后附着于耻骨梳的纤维结构", position: [0.48, -0.45, 0.27], color: "#7fa88a" },
       { id: "pectineal-ligament", label: "耻骨梳韧带", detail: "沿耻骨梳走行，是腹股沟后方重要的坚韧附着结构", position: [0.34, -0.31, 0.14], color: "#c9956a" },
       { id: "ductus-deferens", label: "输精管", detail: "男性精索的重要组成，穿过腹股沟管进入盆腔", position: [0.54, -1.03, -0.2], color: "#b887a4" },
+    ],
+  },
+  {
+    id: "tmj",
+    name: "颞下颌关节（右侧参考）",
+    scientificName: "Articulatio temporomandibularis dextra",
+    system: "运动系统",
+    model: "/models/tmj.glb",
+    icon: "⊏",
+    accent: "#c99a6b",
+    viewScale: 1.5,
+    description: "由下颌头、颞骨关节面和关节盘构成的联动关节，配合咀嚼肌完成张口、咀嚼和说话；模型为右侧参考，并保留下颌骨与颞骨作为空间参照。",
+    poetic: "每天开合数千次的精密铰链",
+    size: "关节盘直径约 2 厘米，是全身最精细的关节之一",
+    weight: "由关节盘、关节囊、韧带与咀嚼肌共同协作",
+    location: "耳屏前方，下颌骨髁突与颞骨关节窝之间",
+    function: "完成张口闭口、前伸和侧方研磨运动",
+    dailyFact: "说话、咀嚼和吞咽时它几乎不停工作，是全身使用频率最高的关节之一",
+    medical: "关节弹响、张口受限或咀嚼疼痛可能提示颞下颌关节紊乱，常与咬合、精神紧张和不良习惯相关。",
+    bloodSupply: "颞浅动脉与上颌动脉分支",
+    funFact: "张口时下颌头不只是原地转动，还会带着关节盘一起向前滑动到关节结节下方。",
+    illustrated: true,
+    hotspotSize: 16,
+    hotspots: [
+      { id: "disc", label: "关节盘", detail: "分隔下颌头与颞骨的纤维软骨盘，随张口向前滑动", position: [-0.97, 0.43, -0.23], color: "#6393d8" },
+      { id: "capsule", label: "关节囊", detail: "包裹关节的纤维囊，内衬滑膜并分泌滑液", position: [-1.32, 0.53, -0.16], color: "#7fa88a" },
+      { id: "lateral-ligament", label: "颞下颌韧带", detail: "加强关节囊外侧，限制下颌过度后退和外移", position: [-1.2, 0.24, -0.07], color: "#f2a33b" },
+      { id: "condyle", label: "下颌头（髁突）", detail: "下颌骨的关节突起，张口时向前下方滑动", position: [-0.91, 0.53, -0.28], color: "#ee7c6a" },
+      { id: "fossa", label: "颞骨关节面", detail: "关节窝与关节结节构成关节的上半，关节盘在其下方滑动", position: [-0.94, 0.61, -0.34], color: "#b887a4" },
+    ],
+  },
+  {
+    id: "intervertebral-discs",
+    name: "椎间盘",
+    scientificName: "Disci intervertebrales",
+    system: "运动系统",
+    model: "/models/intervertebral-discs.glb",
+    icon: "≡",
+    accent: "#7d9cc4",
+    description: "位于相邻椎体之间的纤维软骨垫，由外周纤维环和中央髓核组成，缓冲震荡并允许脊柱屈伸旋转；模型展示 C2–S1 全部椎间盘及主要纵韧带，并保留椎骨作为空间参照。",
+    poetic: "脊柱的减震垫圈",
+    size: "共 23 个，合计约占脊柱全长的四分之一",
+    weight: "外周为纤维环，中央为胶冻状髓核",
+    location: "第 2 颈椎至骶骨之间的相邻椎体间",
+    function: "缓冲垂直负荷、维持椎间隙高度并参与脊柱活动",
+    dailyFact: "晨起时身高比睡前高约 1–2 厘米，部分来自椎间盘夜间吸水回弹",
+    medical: "纤维环破裂、髓核突出可能压迫邻近神经根，引起颈肩或腰腿放射痛，以 L4–L5 和 L5–S1 节段最常见。",
+    bloodSupply: "成人椎间盘中央基本无血管，主要依靠椎体终板扩散获取营养",
+    funFact: "椎间盘是全身最大的无血管结构之一，营养供给依赖日常活动产生的压力泵效应。",
+    illustrated: true,
+    hotspotSize: 18,
+    hotspots: [
+      { id: "cervical-disc", label: "颈椎间盘（C5–C6）", detail: "颈段椎间盘较薄，适应颈椎灵活的前屈后伸和旋转", position: [0, 1.44, 0.17], color: "#6393d8" },
+      { id: "lumbar-disc", label: "腰椎间盘（L4–L5）", detail: "承重最大的椎间盘之一，也是椎间盘突出的高发节段", position: [0, -1.18, 0.31], color: "#ee7c6a" },
+      { id: "anterior-longitudinal", label: "前纵韧带", detail: "贴附椎体前方，限制脊柱过度后伸", position: [0, -0.94, 0.34], color: "#f2a33b" },
+      { id: "posterior-longitudinal", label: "后纵韧带", detail: "位于椎体后方、椎管前壁，限制脊柱过度前屈", position: [0.05, 0.47, -0.15], color: "#7fa88a" },
+      { id: "interspinous", label: "棘间韧带", detail: "连接相邻棘突，协助限制前屈", position: [0, 0.89, -0.33], color: "#d89bc4" },
+      { id: "supraspinous", label: "棘上韧带", detail: "沿棘突尖走行的长韧带，腰椎穿刺时逐层穿过", position: [0, 1.34, -0.18], color: "#c9956a" },
     ],
   },
 ];

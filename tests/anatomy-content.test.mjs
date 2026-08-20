@@ -20,9 +20,9 @@ async function assertNonEmpty(relativePath) {
   assert.ok(file.size > 1_000, `${relativePath} must not be empty`);
 }
 
-test("registers the complete 62-item anatomy collection", async () => {
+test("registers the complete 64-item anatomy collection", async () => {
   const organs = await readOrgans();
-  assert.equal(organs.length, 62);
+  assert.equal(organs.length, 64);
   assert.equal(new Set(organs.map(({ id }) => id)).size, organs.length);
   assert.deepEqual(
     organs.filter(({ illustrated }) => !illustrated).map(({ id }) => id).sort(),
@@ -88,6 +88,9 @@ test("documents model provenance and license boundaries", async () => {
   assert.match(sources, /cranial-nerves\.glb/);
   assert.match(sources, /pelvic-floor-perineum\.glb/);
   assert.match(sources, /inguinal-canal\.glb/);
+  assert.match(sources, /tmj\.glb/);
+  assert.match(sources, /intervertebral-discs\.glb/);
+  assert.match(sources, /3d-vh-f-trachea\.glb/);
   assert.match(sources, /原项目资产/);
 });
 
@@ -129,6 +132,8 @@ test("keeps the audited high-detail structures covered by hotspots", async () =>
     "cranial-nerves": ["I 嗅神经", "V 三叉神经", "VII 面神经", "X 迷走神经", "XII 舌下神经"],
     "pelvic-floor-perineum": ["髂尾肌", "耻骨直肠肌与耻骨尾骨肌", "肛门外括约肌", "阴部神经"],
     "inguinal-canal": ["腹股沟韧带", "腹股沟浅环", "髂耻束", "腔隙韧带", "输精管"],
+    tmj: ["关节盘", "关节囊", "颞下颌韧带", "下颌头（髁突）", "颞骨关节面"],
+    "intervertebral-discs": ["颈椎间盘（C5–C6）", "腰椎间盘（L4–L5）", "前纵韧带", "后纵韧带", "棘上韧带"],
   };
 
   for (const [id, labels] of Object.entries(required)) {
