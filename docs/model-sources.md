@@ -112,6 +112,26 @@ Bueckle, A., Börner, K. (2022). *HuBMAP CCF 3D Reference Object Library*.
 <https://anatomytool.org/content/open3danatomy-3d-model-pelvic-floor-and-perineum-english-labels>、
 <https://anatomytool.org/content/open3danatomy-3d-model-inguinal-ligament-and-related-structures-english-labels>。
 
+2026-08-20 继续从官方主题子模型增加 4 个条目，均保留右侧（`.r`）结构和官方
+材质配色（神经橙黄、骨米白），仅做节点筛选和 Meshopt 转换：
+
+- `median-nerve.glb`：正中神经及其内、外侧根与内、外侧束，保留肱骨、桡尺骨
+  作为行程参照
+- `ulnar-nerve.glb`：尺神经、臂丛内侧束与 T1 根，保留肱骨、桡尺骨参照
+- `radial-nerve.glb`：桡神经主干与浅支、深支、骨间后神经及三条皮支，保留肱骨
+  和肱三头肌作为行程参照
+- `typical-vertebrae.glb`：官方 vertebrae 子模型整体保留，含第 4 颈椎、第 7 胸椎
+  和第 3 腰椎三块典型椎骨
+
+子模型页面（含署名要求）：
+<https://anatomytool.org/content/open3dmodel-median-nerve-english-labels>、
+<https://anatomytool.org/content/open3dmodel-ulnar-nerve-english-labels>、
+<https://anatomytool.org/content/open3dmodel-radial-nerve-english-labels>；
+网页 GLB 取自官方查看器目录
+<https://caskanatomy.info/open3dviewer/3dmodels/>，椎骨源文件取自
+<https://caskanatomy.info/open3dmodelfiles/vertebrae/vertebrae-glb.zip>。
+许可证均为 CC BY-SA，数字使用需附各页面给出的署名行。
+
 ### Z-Anatomy
 
 许可：CC BY-SA 4.0。2026-08-06 从 Z-Anatomy Unity 项目的
@@ -216,6 +236,10 @@ CC BY-SA 4.0 边界处理。原始文件：
 
 2026-08-20 为新增的 `tmj` 与 `intervertebral-discs` 两个条目生成同风格导航插图；
 均采用象牙色纸张、水彩解剖图与粉紫色淡晕背景，不含文字或标注。
+
+同日为新增的 `median-nerve`、`ulnar-nerve`、`radial-nerve` 与 `typical-vertebrae`
+四个条目生成同风格导航插图。三条上肢神经以骨骼为参照并用橙黄色突出行程；
+典型椎骨按 C4、T7、L3 自上而下比较。所有图片均不含文字或标注。
 
 ## 引入新模型的验收条件
 

@@ -20,9 +20,9 @@ async function assertNonEmpty(relativePath) {
   assert.ok(file.size > 1_000, `${relativePath} must not be empty`);
 }
 
-test("registers the complete 64-item anatomy collection", async () => {
+test("registers the complete 68-item anatomy collection", async () => {
   const organs = await readOrgans();
-  assert.equal(organs.length, 64);
+  assert.equal(organs.length, 68);
   assert.equal(new Set(organs.map(({ id }) => id)).size, organs.length);
   assert.deepEqual(
     organs.filter(({ illustrated }) => !illustrated).map(({ id }) => id).sort(),
@@ -91,6 +91,10 @@ test("documents model provenance and license boundaries", async () => {
   assert.match(sources, /tmj\.glb/);
   assert.match(sources, /intervertebral-discs\.glb/);
   assert.match(sources, /3d-vh-f-trachea\.glb/);
+  assert.match(sources, /median-nerve\.glb/);
+  assert.match(sources, /ulnar-nerve\.glb/);
+  assert.match(sources, /radial-nerve\.glb/);
+  assert.match(sources, /typical-vertebrae\.glb/);
   assert.match(sources, /原项目资产/);
 });
 
@@ -134,6 +138,10 @@ test("keeps the audited high-detail structures covered by hotspots", async () =>
     "inguinal-canal": ["腹股沟韧带", "腹股沟浅环", "髂耻束", "腔隙韧带", "输精管"],
     tmj: ["关节盘", "关节囊", "颞下颌韧带", "下颌头（髁突）", "颞骨关节面"],
     "intervertebral-discs": ["颈椎间盘（C5–C6）", "腰椎间盘（L4–L5）", "前纵韧带", "后纵韧带", "棘上韧带"],
+    "median-nerve": ["内、外侧根", "腕管", "肘窝与旋前圆肌"],
+    "ulnar-nerve": ["尺神经沟（肘管）", "腕尺管", "臂丛内侧束"],
+    "radial-nerve": ["桡神经沟", "肱三头肌", "骨间后神经", "浅支（感觉支）"],
+    "typical-vertebrae": ["颈椎横突孔（C4）", "胸椎肋凹（T7）", "腰椎椎体（L3）"],
   };
 
   for (const [id, labels] of Object.entries(required)) {
