@@ -20,9 +20,9 @@ async function assertNonEmpty(relativePath) {
   assert.ok(file.size > 1_000, `${relativePath} must not be empty`);
 }
 
-test("registers the complete 68-item anatomy collection", async () => {
+test("registers the complete 71-item anatomy collection", async () => {
   const organs = await readOrgans();
-  assert.equal(organs.length, 68);
+  assert.equal(organs.length, 71);
   assert.equal(new Set(organs.map(({ id }) => id)).size, organs.length);
   assert.deepEqual(
     organs.filter(({ illustrated }) => !illustrated).map(({ id }) => id).sort(),
@@ -95,6 +95,9 @@ test("documents model provenance and license boundaries", async () => {
   assert.match(sources, /ulnar-nerve\.glb/);
   assert.match(sources, /radial-nerve\.glb/);
   assert.match(sources, /typical-vertebrae\.glb/);
+  assert.match(sources, /lymphatic-system\.glb/);
+  assert.match(sources, /teeth\.glb/);
+  assert.match(sources, /nose\.glb/);
   assert.match(sources, /原项目资产/);
 });
 
@@ -142,6 +145,9 @@ test("keeps the audited high-detail structures covered by hotspots", async () =>
     "ulnar-nerve": ["尺神经沟（肘管）", "腕尺管", "臂丛内侧束"],
     "radial-nerve": ["桡神经沟", "肱三头肌", "骨间后神经", "浅支（感觉支）"],
     "typical-vertebrae": ["颈椎横突孔（C4）", "胸椎肋凹（T7）", "腰椎椎体（L3）"],
+    "lymphatic-system": ["腋淋巴结", "肠系膜淋巴结", "腹股沟浅淋巴结", "胸腺（右叶）", "脾"],
+    teeth: ["上颌中切牙", "上颌尖牙", "上颌第一磨牙", "下颌第一磨牙"],
+    nose: ["鼻骨", "鼻中隔软骨", "鼻外侧软骨", "下鼻甲"],
   };
 
   for (const [id, labels] of Object.entries(required)) {

@@ -66,7 +66,10 @@ export type OrganId =
   | "median-nerve"
   | "ulnar-nerve"
   | "radial-nerve"
-  | "typical-vertebrae";
+  | "typical-vertebrae"
+  | "lymphatic-system"
+  | "teeth"
+  | "nose";
 
 export type Hotspot = {
   id: string;
@@ -2013,6 +2016,91 @@ export const organs: Organ[] = [
       { id: "t7-spinous", label: "胸椎长棘突（T7）", detail: "细长棘突斜向后下方，呈叠瓦状排列", position: [0, -0.46, -0.7], color: "#f2a33b" },
       { id: "l3-body", label: "腰椎椎体（L3）", detail: "椎体短厚肥大，承担上半身重量", position: [0, -1.54, 1.07], color: "#7fa88a" },
       { id: "l3-spinous", label: "腰椎棘突（L3）", detail: "宽板状、水平后伸，是腰椎穿刺的重要体表标志", position: [0, -1.7, -1.07], color: "#d89bc4" },
+    ],
+  },
+  {
+    id: "lymphatic-system",
+    name: "淋巴系统",
+    scientificName: "Systema lymphoideum",
+    system: "淋巴系统",
+    model: "/models/lymphatic-system.glb",
+    icon: "✦",
+    accent: "#7fa86b",
+    description: "遍布全身的淋巴器官与淋巴结网络：组织液经毛细淋巴管回收为淋巴，沿途由淋巴结过滤，最终经胸导管和右淋巴导管回流入血；模型展示头颈、胸腹、盆腔与四肢的主要淋巴结群，以及胸腺、脾和腭扁桃体。",
+    poetic: "身体的过滤与警戒网络",
+    size: "全身约有 600–700 枚淋巴结",
+    weight: "随年龄与免疫状态变化，胸腺在青春期后逐渐退化",
+    location: "从颈部、腋窝到纵隔、腹腔和腹股沟",
+    function: "回收组织液、过滤淋巴并启动免疫应答",
+    dailyFact: "每天约有 2–3 升淋巴液经淋巴系统回流到血液",
+    medical: "感染或肿瘤转移时，引流区域的淋巴结会肿大；腋窝淋巴结清扫是乳腺癌分期的重要步骤。",
+    bloodSupply: "淋巴道：毛细淋巴管 → 淋巴管 → 淋巴干 → 胸导管与右淋巴导管",
+    funFact: "胸导管是全身最大的淋巴管，收集约四分之三身体的淋巴，最终注入左静脉角。",
+    illustrated: true,
+    hotspotSize: 16,
+    hotspots: [
+      { id: "tonsils", label: "腭扁桃体", detail: "咽淋巴环的一部分，是呼吸道入口的免疫前哨", position: [-0.1, 1.77, 0.08], color: "#d89bc4" },
+      { id: "submandibular", label: "下颌下淋巴结", detail: "引流面部与口腔，头颈感染时常可触及", position: [-0.02, 1.58, 0.17], color: "#ee7c6a" },
+      { id: "thymus", label: "胸腺（右叶）", detail: "T 淋巴细胞成熟的场所，青春期后逐渐脂肪化", position: [0.02, 1.02, 0.17], color: "#b98aa6" },
+      { id: "axillary", label: "腋淋巴结", detail: "引流上肢与胸壁，乳腺癌转移首先关注这里", position: [-0.49, 0.94, -0.14], color: "#6393d8" },
+      { id: "tracheobronchial", label: "气管支气管淋巴结", detail: "引流肺与纵隔，是胸部淋巴回流的枢纽", position: [0, 1.16, -0.05], color: "#f2a33b" },
+      { id: "spleen", label: "脾", detail: "最大的淋巴器官，过滤血液并清除衰老红细胞", position: [0.29, 0.42, -0.03], color: "#b06a78" },
+      { id: "mesenteric", label: "肠系膜淋巴结", detail: "肠道淋巴回流的中转站，肠道感染时可肿大疼痛", position: [0.01, -0.18, 0.18], color: "#7fa88a" },
+      { id: "inguinal", label: "腹股沟浅淋巴结", detail: "引流下肢与会阴，下肢感染时常可触及肿大", position: [-0.21, -0.77, 0.15], color: "#c9956a" },
+    ],
+  },
+  {
+    id: "teeth",
+    name: "牙齿（恒牙）",
+    scientificName: "Dentes permanentes",
+    system: "消化系统",
+    model: "/models/teeth.glb",
+    icon: "◭",
+    accent: "#c8b78d",
+    description: "上下牙弓共 28 颗恒牙（模型未含第三磨牙）：切牙切割、尖牙撕裂、前磨牙与磨牙研磨，是消化系统的第一道关口。",
+    poetic: "咀嚼的第一道工序",
+    size: "牙冠外露于牙龈，牙根埋于牙槽骨内",
+    weight: "每颗牙由牙釉质、牙本质、牙骨质和牙髓构成",
+    location: "上、下颌骨牙槽突的牙槽窝内",
+    function: "切割、撕裂和研磨食物，并辅助发音",
+    dailyFact: "第一磨牙约 6 岁萌出，俗称“六龄牙”，是不需要替换乳牙的恒牙",
+    medical: "龋齿是最常见的口腔疾病；第一磨牙萌出早、窝沟深，是儿童龋坏的高发牙位。",
+    bloodSupply: "上、下牙槽动脉（上颌动脉分支）",
+    funFact: "牙釉质是全身最坚硬的组织，但一旦磨损或龋坏就无法自我修复。",
+    illustrated: true,
+    hotspotSize: 16,
+    hotspots: [
+      { id: "incisor", label: "上颌中切牙", detail: "铲状切缘用于切割食物", position: [-0.26, 0.56, 1.27], color: "#ee7c6a" },
+      { id: "canine", label: "上颌尖牙", detail: "牙根最长，锥形牙尖用于撕裂", position: [-1.01, 0.75, 0.95], color: "#f2a33b" },
+      { id: "premolar", label: "上颌第一前磨牙", detail: "双尖咬合面，辅助研磨", position: [-1.19, 0.76, 0.5], color: "#7fa88a" },
+      { id: "upper-molar", label: "上颌第一磨牙", detail: "主要研磨牙，约 6 岁萌出的“六龄牙”", position: [-1.43, 0.83, -0.37], color: "#6393d8" },
+      { id: "lower-molar", label: "下颌第一磨牙", detail: "咬合面窝沟深，是龋坏最好发的牙位之一", position: [-1.35, -0.39, -0.48], color: "#d89bc4" },
+    ],
+  },
+  {
+    id: "nose",
+    name: "鼻",
+    scientificName: "Nasus",
+    system: "呼吸系统",
+    model: "/models/nose.glb",
+    icon: "◮",
+    accent: "#91a9c8",
+    description: "外鼻由鼻骨与鼻软骨共同支架，鼻腔内鼻甲卷曲突出；模型展示鼻骨、鼻中隔软骨、鼻外侧软骨与下鼻甲，呈现呼吸通道的骨与软骨框架。",
+    poetic: "空气进入身体的第一站",
+    size: "外鼻长约 5–6 厘米",
+    weight: "由 2 块鼻骨、多块鼻软骨和成对鼻甲构成",
+    location: "面部正中，口腔与眼眶之间",
+    function: "加温、加湿、过滤吸入的空气，并容纳嗅觉感受器",
+    dailyFact: "两侧鼻甲会每隔几小时交替充血，悄悄轮换“值班”",
+    medical: "鼻骨是面部最常见的骨折部位；鼻中隔前下方的 Little 区是鼻出血最好发的位置。",
+    bloodSupply: "筛前、筛后动脉（眼动脉）与蝶腭动脉（上颌动脉）分支",
+    funFact: "鼻腔每天大约处理 1 万升空气，鼻毛和黏液会拦下其中大部分颗粒。",
+    illustrated: true,
+    hotspots: [
+      { id: "nasal-bone", label: "鼻骨", detail: "成对的小骨构成鼻梁上段支架，是面部最常见的骨折部位", position: [-0.21, 0.57, 0.58], color: "#ee7c6a" },
+      { id: "lateral-cartilage", label: "鼻外侧软骨", detail: "与鼻中隔软骨相连，决定鼻梁下段与鼻尖形态", position: [-0.33, -0.4, 1.04], color: "#6393d8" },
+      { id: "septal-cartilage", label: "鼻中隔软骨", detail: "分隔左右鼻腔，前下方 Little 区是鼻出血好发处", position: [0, -0.5, 0.83], color: "#f2a33b" },
+      { id: "inferior-concha", label: "下鼻甲", detail: "卷曲突入鼻腔，增大表面积以加温加湿空气", position: [-0.49, -0.75, -1.02], color: "#7fa88a" },
     ],
   },
 ];

@@ -178,6 +178,24 @@ CC BY-SA 4.0 边界处理。原始文件：
 `scripts/style-tmj.mjs` 和 `scripts/style-intervertebral-discs.mjs` 设置骨骼、
 椎间盘（关节盘）、韧带和关节囊的区分色，最后以 Meshopt 压缩。
 
+同日又从 `LymphoidOrgans100.fbx` 与 `SkeletalSystem100.fbx` 提取 3 个条目：
+
+- `lymphatic-system.glb`：全身主要淋巴结群（头颈、胸、腹、盆腔与四肢）加
+  胸腺、脾和腭扁桃体，共 133 个网格。该 FBX 中所有以 `j` 结尾的节点均为
+  36 顶点的标注牌而非解剖网格，提取时已排除；`scripts/check-overlap.mjs`
+  用于排查包围盒重叠的重复网格，`scripts/style-lymphatic-system.mjs` 将
+  淋巴结群设为绿色，脾、胸腺、扁桃体沿用各自条目色系。
+- `teeth.glb`：28 颗恒牙（上、下颌各 14 颗，模型不含第三磨牙），
+  由 `scripts/style-teeth.mjs` 设置牙釉质材质。
+- `nose.glb`：鼻骨、鼻中隔软骨、鼻外侧软骨和下鼻甲，
+  由 `scripts/style-nose.mjs` 区分骨与软骨材质。
+
+注意：gltf-transform 的 `quantize()`（含 `meshopt()` 管线）会把被重新量化的
+节点清空名称并追加到节点列表末尾；`scripts/compress-meshopt.mjs` 调用 API 压缩，
+`scripts/restore-node-names.mjs` 再按出现顺序和顶点数把名称补回。牙齿等 FBX
+网格是每顶点重复的三角面汤，压缩管线中的 weld 会将其收敛到十分之一的顶点数，
+属预期行为。`scripts/node-info.mjs` 可输出每个节点的顶点数与包围盒备查。
+
 ### BodyParts3D 4.0
 
 许可：[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。指定署名：
@@ -240,6 +258,10 @@ CC BY-SA 4.0 边界处理。原始文件：
 同日为新增的 `median-nerve`、`ulnar-nerve`、`radial-nerve` 与 `typical-vertebrae`
 四个条目生成同风格导航插图。三条上肢神经以骨骼为参照并用橙黄色突出行程；
 典型椎骨按 C4、T7、L3 自上而下比较。所有图片均不含文字或标注。
+
+同日为新增的 `lymphatic-system`、`teeth` 与 `nose` 三个条目生成同风格导航插图：
+淋巴系统突出绿色淋巴管、主要淋巴结群和淋巴器官；恒牙展示不含第三磨牙的
+上下牙弓；鼻展示鼻骨、软骨与鼻甲的切面关系。所有图片均不含文字或标注。
 
 ## 引入新模型的验收条件
 

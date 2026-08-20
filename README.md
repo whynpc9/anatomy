@@ -1,6 +1,6 @@
 # 解剖工坊 (Anatomy Atelier)
 
-中文的人体器官 3D 图鉴：浏览 68 个器官与解剖结构的介绍，旋转、剖切、分层查看
+中文的人体器官 3D 图鉴：浏览 71 个器官与解剖结构的介绍，旋转、剖切、分层查看
 交互式 3D 标本，点击模型上的圆点了解各部位结构。
 
 基于 [vinext](https://github.com/cloudflare/vinext)（Vite 上的 Next.js 兼容
@@ -15,7 +15,7 @@ three.js 交互式查看器的基础实现。当前仓库是在该项目基础�
 
 相较于上游项目，本项目主要增加或调整了：
 
-- 将界面与内容收敛为中文人体器官 3D 图鉴，并把内容扩展到 68 个器官与解剖结构；
+- 将界面与内容收敛为中文人体器官 3D 图鉴，并把内容扩展到 71 个器官与解剖结构；
 - 从 HuBMAP CCF、BodyParts3D、Open3DModel / AnatomyTOOL 和 Z-Anatomy
   引入可追溯的开放模型，完成格式转换、左右侧合并、节点提取和网页压缩；上游已有
   模型保持原文件不变，HuBMAP 对照版本以 `-hubmap` 后缀并存；
@@ -24,7 +24,7 @@ three.js 交互式查看器的基础实现。当前仓库是在该项目基础�
 
 ## 功能
 
-- 68 个器官与解剖结构的中文档案：描述、大小/重量/位置/功能/血供、医学意义、趣味知识
+- 71 个器官与解剖结构的中文档案：描述、大小/重量/位置/功能/血供、医学意义、趣味知识
 - 交互式 3D 标本：旋转、缩放、隔离、剖面、分层（线框）、重置
 - 模型表面的解剖结构热点标注，点击查看详情
 - 器官库搜索与移动端抽屉浏览
@@ -67,7 +67,7 @@ npm run build  # 验证构建产物
 
 `worker/index.ts` 是 vinext 的服务端入口，只有 `npm run build` 和
 `npm start` 会用到；生产静态部署不经过它。
-`npm test` 会先构建站点，再检查 68 个内容条目的模型、插图和来源文档是否完整。
+`npm test` 会先构建站点，再检查 71 个内容条目的模型、插图和来源文档是否完整。
 
 ## Cloudflare 静态部署
 
@@ -109,7 +109,7 @@ npm run deploy:cloudflare
 | [HuBMAP CCF 3D Reference Object Library](https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html) | 血管、盆骨、膝关节、气管等新增模型，以及心、脑、肺、肝、肾、眼、胰腺的 `-hubmap` 对照资产 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | [BodyParts3D](https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html) | 胃、食管、阑尾、舌、耳、肾上腺、膈、垂体 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | [Open3DModel / AnatomyTOOL](https://anatomytool.org/open3dmodel-create) | 骨骼、颅骨、脊柱、典型椎骨、手与腕、肩/肘/髋关节、踝与足、旋转袖、臂丛神经、正中/尺/桡神经 | CC BY-SA（以源项目标注为准） |
-| [Z-Anatomy](https://github.com/LluisV/Z-Anatomy) | 全身主要肌群、脑神经、甲状腺、甲状旁腺、睾丸与附睾、唾液腺、咽、颞下颌关节、椎间盘 | CC BY-SA 4.0；源项目中的混合资产需逐项核对 |
+| [Z-Anatomy](https://github.com/LluisV/Z-Anatomy) | 全身主要肌群、脑神经、甲状腺、甲状旁腺、睾丸与附睾、唾液腺、咽、颞下颌关节、椎间盘、淋巴系统概览、恒牙、鼻（鼻骨与鼻软骨） | CC BY-SA 4.0；源项目中的混合资产需逐项核对 |
 | 上游 `thebuggeddev/anatomy` | 心、脑、肺、肝、肾、眼、肠道、胰腺、皮肤九个初始模型及上游插图 | 上游未提供逐文件来源或明确许可证 |
 
 完整的逐文件来源、版本、作者/署名、转换方式、性别与侧别限制，见
