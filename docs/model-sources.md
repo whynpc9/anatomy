@@ -132,6 +132,44 @@ Bueckle, A., Börner, K. (2022). *HuBMAP CCF 3D Reference Object Library*.
 <https://caskanatomy.info/open3dmodelfiles/vertebrae/vertebrae-glb.zip>。
 许可证均为 CC BY-SA，数字使用需附各页面给出的署名行。
 
+同日再从官方主题子模型增加 6 个条目，同样保留右侧（`.r`）结构和官方材质，
+仅做节点筛选与 Meshopt 转换：
+
+- `axillary-nerve.glb`：腋神经（含臂外侧上皮神经终支）、臂丛后束，
+  保留肱骨、三角肌和小圆肌作为行程与支配参照
+- `musculocutaneous-nerve.glb`：肌皮神经及其终支前臂外侧皮神经、臂丛外侧束，
+  保留肱骨、桡尺骨和喙肱肌、肱二头肌、肱肌作为行程参照
+- `forearm-flexors.glb`：前臂前室四层屈肌群（旋前圆肌、桡侧腕屈肌、掌长肌、
+  尺侧腕屈肌、指浅屈肌、指深屈肌、拇长屈肌、旋前方肌）与掌腱膜，
+  保留肱骨、桡尺骨参照
+- `shoulder-girdle-muscles.glb`：来自 axio-appendicular 子模型，含斜方肌
+  降/横/升三部、胸大肌三头、胸小肌、锁骨下肌、前锯肌、大小菱形肌和
+  肩胛提肌，保留锁骨、肩胛骨、肱骨和胸骨参照；源模型的“muscle-and-
+  ligament-parts-hidden”子集只展示与上肢带相关的部分
+- `colored-skull-base.glb`：官方 colored-skull-base 子模型整体保留，
+  29 个骨块按彩色分区，用于观察颅底孔道
+- `exploded-skull.glb`：官方 exploded-skull 子模型整体保留，
+  22 块颅骨按缝隙分解展开
+
+子模型页面（含署名要求）：
+<https://anatomytool.org/content/open3dmodel-axillary-nerve-english-labels>、
+<https://anatomytool.org/content/open3dmodel-musculocutaneous-nerve-english-labels>、
+<https://anatomytool.org/content/open3dmodel-forearm-anterior-compartment-muscles-english-labels>、
+<https://anatomytool.org/content/open3dmodel-axio-appendicular-muscles-muscle-and-ligament-parts-hidden-english-labels>、
+<https://anatomytool.org/content/open3dmodel-coloured-skull-base-english-labels>、
+<https://anatomytool.org/content/open3dmodel-exploded-view-skull-english-labels>。
+
+同日又从 Open3DAnatomy 疝手术区域模型增加 1 个条目：
+
+- `femoral-canal.glb`：男性右侧股鞘、股管、股环高亮网格，股神经、股动静脉、
+  髂外血管、腹壁下动脉及其与闭孔动脉的吻合支（corona mortis）、腹股沟韧带、
+  腔隙韧带、耻骨梳韧带、髂耻束、髂耻弓和髂肌、腰大肌，保留髋骨与股骨参照。
+  该模型以 BodyParts 项目和 Z-Anatomy 为先前模型，许可 CC BY-SA。
+  页面：<https://anatomytool.org/content/open3danatomy-3d-model-inguinal-and-femoral-canal-and-structures-hernia-surgery>。
+
+注意：caskanatomy.info 的大文件传输经常在中途停滞且不支持断点续传，
+可用 `scripts/chunked-dl.sh` 按固定字节区间分块下载再拼接。
+
 ### Z-Anatomy
 
 许可：CC BY-SA 4.0。2026-08-06 从 Z-Anatomy Unity 项目的
@@ -195,6 +233,11 @@ CC BY-SA 4.0 边界处理。原始文件：
 `scripts/restore-node-names.mjs` 再按出现顺序和顶点数把名称补回。牙齿等 FBX
 网格是每顶点重复的三角面汤，压缩管线中的 weld 会将其收敛到十分之一的顶点数，
 属预期行为。`scripts/node-info.mjs` 可输出每个节点的顶点数与包围盒备查。
+
+同日从 `SkeletalSystem100.fbx` 提取右侧锤骨、砧骨和镫骨，生成
+`ear-ossicles.glb`；`scripts/style-ear-ossicles.mjs` 设置骨质材质。
+`scripts/sample-path.mjs` 可按 Y 轴分桶采样网格顶点，用于沿神经、
+血管行程放置热点。
 
 ### BodyParts3D 4.0
 
@@ -262,6 +305,12 @@ CC BY-SA 4.0 边界处理。原始文件：
 同日为新增的 `lymphatic-system`、`teeth` 与 `nose` 三个条目生成同风格导航插图：
 淋巴系统突出绿色淋巴管、主要淋巴结群和淋巴器官；恒牙展示不含第三磨牙的
 上下牙弓；鼻展示鼻骨、软骨与鼻甲的切面关系。所有图片均不含文字或标注。
+
+同日为新增的 `axillary-nerve`、`musculocutaneous-nerve`、`forearm-flexors`、
+`shoulder-girdle-muscles`、`colored-skull-base`、`exploded-skull`、
+`femoral-canal` 与 `ear-ossicles` 八个条目生成同风格导航插图。上肢条目分别
+突出神经行程和肌层关系；颅骨条目采用彩色分区与分解构图；股管展示血管、
+淋巴与韧带毗邻；听小骨展示锤骨、砧骨和镫骨链。所有图片均不含文字或标注。
 
 ## 引入新模型的验收条件
 

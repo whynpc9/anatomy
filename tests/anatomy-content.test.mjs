@@ -20,9 +20,9 @@ async function assertNonEmpty(relativePath) {
   assert.ok(file.size > 1_000, `${relativePath} must not be empty`);
 }
 
-test("registers the complete 71-item anatomy collection", async () => {
+test("registers the complete 79-item anatomy collection", async () => {
   const organs = await readOrgans();
-  assert.equal(organs.length, 71);
+  assert.equal(organs.length, 79);
   assert.equal(new Set(organs.map(({ id }) => id)).size, organs.length);
   assert.deepEqual(
     organs.filter(({ illustrated }) => !illustrated).map(({ id }) => id).sort(),
@@ -98,6 +98,14 @@ test("documents model provenance and license boundaries", async () => {
   assert.match(sources, /lymphatic-system\.glb/);
   assert.match(sources, /teeth\.glb/);
   assert.match(sources, /nose\.glb/);
+  assert.match(sources, /axillary-nerve\.glb/);
+  assert.match(sources, /musculocutaneous-nerve\.glb/);
+  assert.match(sources, /forearm-flexors\.glb/);
+  assert.match(sources, /shoulder-girdle-muscles\.glb/);
+  assert.match(sources, /colored-skull-base\.glb/);
+  assert.match(sources, /exploded-skull\.glb/);
+  assert.match(sources, /femoral-canal\.glb/);
+  assert.match(sources, /ear-ossicles\.glb/);
   assert.match(sources, /原项目资产/);
 });
 
@@ -148,6 +156,14 @@ test("keeps the audited high-detail structures covered by hotspots", async () =>
     "lymphatic-system": ["腋淋巴结", "肠系膜淋巴结", "腹股沟浅淋巴结", "胸腺（右叶）", "脾"],
     teeth: ["上颌中切牙", "上颌尖牙", "上颌第一磨牙", "下颌第一磨牙"],
     nose: ["鼻骨", "鼻中隔软骨", "鼻外侧软骨", "下鼻甲"],
+    "axillary-nerve": ["臂丛后束", "四边孔", "外科颈绕行段", "三角肌支"],
+    "musculocutaneous-nerve": ["臂丛外侧束", "穿喙肱肌点", "前臂外侧皮神经"],
+    "forearm-flexors": ["旋前圆肌", "掌长肌", "指浅屈肌", "旋前方肌"],
+    "shoulder-girdle-muscles": ["斜方肌降部", "胸大肌", "前锯肌", "菱形肌"],
+    "colored-skull-base": ["筛骨", "蝶骨", "颞骨", "枕骨"],
+    "exploded-skull": ["额骨", "顶骨（左）", "上颌骨", "下颌骨"],
+    "femoral-canal": ["股鞘", "股管", "股环", "死亡之冠"],
+    "ear-ossicles": ["锤骨", "砧骨", "镫骨"],
   };
 
   for (const [id, labels] of Object.entries(required)) {

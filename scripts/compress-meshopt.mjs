@@ -25,6 +25,12 @@ if (!inputPath || !outputPath) {
       "meshopt.encoder": MeshoptEncoder,
     });
   const document = await io.read(inputPath);
+  // Source files that still carry Draco (or any other compression) must be
+  // decompressed first; otherwise the writer tries to re-encode them and
+  // fails without an encoder dependency.
+  for (const extension of document.getRoot().listExtensionsUsed()) {
+    if (extension.extensionName === "KHR_draco_mesh_compression") extension.dispose();
+  }
   await document.transform(meshopt({ encoder: MeshoptEncoder, level: "medium" }));
   await io.write(outputPath, document);
   console.log(`Meshopt-compressed ${inputPath} -> ${outputPath}`);
