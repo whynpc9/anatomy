@@ -257,6 +257,100 @@ CC BY-SA 4.0 边界处理。原始文件：
 明显简于 HuBMAP 模型，后续替换时应保持同一器官 ID 和热点归一化约定。
 其中 `trachea.glb` 已于 2026-08-20 替换为 HuBMAP v1.4 版本（见上文）。
 
+### Human Atlas / BodyParts3D 4.0：25 个主题（2026-09-07）
+
+从 [ashemag/human-atlas](https://github.com/ashemag/human-atlas/tree/1c38bf35c254a891200d3cedecfd57abebe83d8d)
+固定提交 `1c38bf35c254a891200d3cedecfd57abebe83d8d` 的 `public/models/atlas.json`
+及 `body-0.bin` 至 `body-14.bin` 提取 **227 个源网格，组成 25 个主题**。
+项目展示条目从 79 个增至 104 个。这是新增独立页面，不代表这些结构从未出现在
+已有全脑、骨骼、肌肉或血管的组合模型中。
+
+原始数据为 `isa_BP3D_4.0_obj_99.zip`，BodyParts3D 4.0 成年男性参考。
+作者/署名：`BodyParts3D © The Database Center for Life Science licensed under CC BY 4.0`。
+[官方现行许可](https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html)与
+[上游加工记录](https://github.com/ashemag/human-atlas/blob/1c38bf35c254a891200d3cedecfd57abebe83d8d/public/ATTRIBUTION.md)
+已核对。模型数据按 CC BY 4.0 使用；本次没有移植上游应用代码。
+
+上游完成毫米/Z-up 到米/Y-up 转换及误差阈值 0.2% 的几何简化。本次按 FMA 概念
+选取网格，保留原始相对坐标，以自编脚本解包、指定材质并转换为 Meshopt GLB。
+没有再对几何减面；压缩包含顶点量化。保留每个节点的 FJ 网格编号、英文名与 FMA
+编号，并在 GLB 中嵌入版权信息。25 个 GLB 共 4,039,900 字节，约 3.85 MiB。
+
+| 模型文件 | 主题 | 源网格数 |
+| --- | --- | ---: |
+| `pineal-gland.glb` | 松果体 | 1 |
+| `hippocampus.glb` | 海马 | 2 |
+| `amygdala.glb` | 杏仁核 | 2 |
+| `thalamus.glb` | 丘脑 | 2 |
+| `hypothalamus.glb` | 下丘脑 | 4 |
+| `corpus-callosum.glb` | 胼胝体 | 1 |
+| `brain-ventricles.glb` | 脑室系统 | 5 |
+| `aorta.glb` | 主动脉 | 5 |
+| `superior-vena-cava.glb` | 上腔静脉 | 1 |
+| `inferior-vena-cava.glb` | 下腔静脉 | 2 |
+| `hepatic-portal-vein.glb` | 肝门静脉 | 19 |
+| `biliary-tree.glb` | 胆道系统 | 17 |
+| `pancreatic-ducts.glb` | 胰管系统 | 2 |
+| `mesentery.glb` | 肠系膜 | 3 |
+| `seminal-vesicles.glb` | 精囊（男性参考） | 2 |
+| `ductus-deferens.glb` | 输精管（男性参考） | 2 |
+| `lacrimal-apparatus.glb` | 泪器 | 10 |
+| `extraocular-muscles.glb` | 眼外肌 | 14 |
+| `hyoid.glb` | 舌骨 | 2 |
+| `achilles-tendons.glb` | 跟腱 | 2 |
+| `intercostal-muscles.glb` | 肋间肌 | 6 |
+| `quadriceps.glb` | 股四头肌 | 8 |
+| `gluteal-muscles.glb` | 臀肌群 | 6 |
+| `bronchial-tree.glb` | 肺内支气管树 | 98 |
+| `heart-valves.glb` | 心脏瓣膜 | 11 |
+
+范围与纠正：
+
+- 脑室归入神经系统，纠正上游 `cardiac` 分类；腔隙模型不称为实质组织。
+- 臀肌仅取双侧臀大、中、小肌六个网格，排除上游组合中的深层外旋肌等。
+- 眼外肌包含双侧六条眼球运动肌及提上睑肌，共 14 个网格，文案明确区分。
+- 胆道保留肝内分支、左右肝管、肝总管和胆囊管；未将缺少完整胆总管的模型称为完整胆道。
+- 肠系膜包含小肠系膜、阑尾系膜和横结肠系膜；支气管树不含肺泡。
+- 瓣膜呈静态形态，不构成完整腱索、乳头肌装置或瓣膜运动模拟。
+- 同名源网格不等于重复几何，继续保留源模型的组成关系。两块舌骨网格不称为两块舌骨。
+- 精囊、输精管明确标注男性参考；其他条目也说明参考标本的性别。
+
+导航图片是本次 GLB 的真实渲染，非生成式医学插图：每个主题提供 720×720 主图与
+180×180 缩略图，均按 CC BY 4.0 保留来源。公开署名文件为
+`public/human-atlas-attribution.txt`，各新增条目的信息面板链接到该文件。
+查看器保留 GLB 材质的双面属性，以支持旋转观察系膜等薄片。
+
+复现与校验：
+
+1. 将上游仓库检出到上述固定提交。
+2. `node scripts/import-human-atlas.mjs /path/to/human-atlas`；选取与中文文案源文件为
+   `scripts/human-atlas-selection.mjs`。只重建这 25 个模型和标记的生成内容区。
+3. 本地服务仓库根目录，在浏览器打开 `scripts/human-atlas-previews.html`，依次调用
+   `renderAtlasPreview(id)`；将返回的 base64 WebP 写为对应 `organ.webp` / `thumb.webp`。
+4. `npm run test:content` 验证 104 个条目的资源以及这 25 个模型的源网格成员、版权、
+   文件哈希、米制尺度、压缩读回、热点与指定网格的表面距离和图片尺寸/非空像素。
+
+逐文件 FMA/FJ 清单、热点对应网格、源 JSON/二进制 SHA-256、GLB 哈希和包围盒见
+[`human-atlas-import.json`](human-atlas-import.json)。热点由最终 GLB 解码后的实际表面
+顶点计算，包含归一化整数 accessor 的解码与节点世界变换，使用查看器的最长边 3.8
+归一化约定。原始二进制的顶点包围盒与导出结果误差校验小于 0.1 毫米。
+
+中文内容按一般解剖事实独立编写，不复制来源文章；不提供诊疗建议或未经核实的精确
+重量。内容参考包括 [NCBI 脑的主要结构](https://www.ncbi.nlm.nih.gov/books/NBK234157/)、
+[下丘脑与垂体](https://www.ncbi.nlm.nih.gov/books/NBK279126/)、
+[胆道](https://www.ncbi.nlm.nih.gov/books/NBK459246/)、
+[眼外肌](https://www.ncbi.nlm.nih.gov/books/NBK519565/)、
+[眼与泪器](https://www.ncbi.nlm.nih.gov/books/NBK482428/)、
+[精囊](https://www.ncbi.nlm.nih.gov/books/NBK499854/)及
+[腹部解剖](https://www.ncbi.nlm.nih.gov/books/NBK553104/)。
+完成源码、模型和一般解剖资料核对不等同于医学专家审校；仍遵循项目的科普用途边界。
+
+本次本地验收：`npm test`（构建及 7 项测试）、`npm run build:cloudflare`、
+`npx tsc --noEmit`、`git diff --check` 通过；变更代码 ESLint 无错误，保留原有
+`<img>` 提示。浏览器逐项验证 25 个条目的模型加载、首个热点联动与署名，检查全部
+25 张模型渲染预览；另验证搜索、分层、390×844 移动端器官库选择与无横向溢出。
+静态导出中的 25 个 GLB 与源文件逐字节一致。该验收不包含生产部署或实体手机测试。
+
 ### 原项目资产
 
 当前心、脑、肺、肝、肾、眼、肠道、胰腺与皮肤这九个初始条目的 3D 模型仍直接

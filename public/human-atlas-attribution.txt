@@ -1,0 +1,33 @@
+BodyParts3D © The Database Center for Life Science licensed under CC BY 4.0
+
+License: https://creativecommons.org/licenses/by/4.0/
+Official database license: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+Dataset: BodyParts3D 4.0 (adult male reference anatomy)
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html
+
+Browser-ready source: ashemag/human-atlas
+Revision: 1c38bf35c254a891200d3cedecfd57abebe83d8d
+https://github.com/ashemag/human-atlas/tree/1c38bf35c254a891200d3cedecfd57abebe83d8d
+https://github.com/ashemag/human-atlas/blob/1c38bf35c254a891200d3cedecfd57abebe83d8d/public/ATTRIBUTION.md
+
+Upstream adaptations: source OBJ geometry converted to meters/Y-up, translated,
+simplified with a 0.2% relative error limit, normals quantized, packed into binary chunks.
+
+Anatomy Atelier adaptations (2026-09-07): selected 227 source meshes into 25
+anatomical topics; retained source identities and relative positions; assigned
+materials; converted to GLB with Meshopt compression; generated Chinese labels
+and surface landmarks; rendered 720px and 180px WebP navigation images from these
+models. The model-derived images are also distributed under CC BY 4.0.
+No endorsement by the data creators is implied.
+
+Topics: pineal-gland, hippocampus, amygdala, thalamus, hypothalamus,
+corpus-callosum, brain-ventricles, aorta, superior-vena-cava, inferior-vena-cava,
+hepatic-portal-vein, biliary-tree, pancreatic-ducts, mesentery, seminal-vesicles,
+ductus-deferens, lacrimal-apparatus, extraocular-muscles, hyoid, achilles-tendons,
+intercostal-muscles, quadriceps, gluteal-muscles, bronchial-tree, heart-valves.
+
+Provenance and per-file mesh selections:
+https://github.com/whynpc9/anatomy/blob/main/docs/model-sources.md
+https://github.com/whynpc9/anatomy/blob/main/docs/human-atlas-import.json
+
+Models are simplified educational references, not a complete atlas or clinical tool.

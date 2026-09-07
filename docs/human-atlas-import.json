@@ -1,0 +1,2174 @@
+{
+  "source": "https://github.com/ashemag/human-atlas/tree/1c38bf35c254a891200d3cedecfd57abebe83d8d",
+  "revision": "1c38bf35c254a891200d3cedecfd57abebe83d8d",
+  "atlasSha256": "c359f4bcd2cba90b7411d66d5e9fc04dc81294d46cd5c1e8b212c824f2e5bbee",
+  "chunks": [
+    {
+      "url": "/models/body-0.bin",
+      "sha256": "b33b2b5aac20f35fbf6871f916607bf3c4d386321c8c0fdadcca6b5d24e3641e"
+    },
+    {
+      "url": "/models/body-1.bin",
+      "sha256": "aa077a4675f0d0dd3c9b0af39dc8cf6bcb348c3bf7d283478d4206ce30a5a0de"
+    },
+    {
+      "url": "/models/body-2.bin",
+      "sha256": "4b3acfc35b91e4427eaca0e3be897d33f144354342ae0e52a2328b582ca8bdbe"
+    },
+    {
+      "url": "/models/body-3.bin",
+      "sha256": "6febb76b50423331f66802a63bb43f04f99ce08129837015910eed43d0719268"
+    },
+    {
+      "url": "/models/body-4.bin",
+      "sha256": "0509e6c996fe5b935ace770a5dbf2d83a474330b7e541a844052a080bbf814bb"
+    },
+    {
+      "url": "/models/body-5.bin",
+      "sha256": "32a967198ffed45839968228898f3d246c67f86fb26892c3ae270be30e2f1149"
+    },
+    {
+      "url": "/models/body-6.bin",
+      "sha256": "1c98dae807210cc51a4abc806134727c9544155cad0cc328cf2e1ae1f954d3ff"
+    },
+    {
+      "url": "/models/body-7.bin",
+      "sha256": "06340f48478eb989cec117a558290c0cd54eeead9641b565cbb8aab255b4e56b"
+    },
+    {
+      "url": "/models/body-8.bin",
+      "sha256": "18beacfdeadc8ad483d692672aae165f4323704cd7a9bfcbebbd703f5e268e25"
+    },
+    {
+      "url": "/models/body-9.bin",
+      "sha256": "0aa8aa09a379a2d759872659a2ef68fc4510ee37e435c4ebc63ee679722a4547"
+    },
+    {
+      "url": "/models/body-10.bin",
+      "sha256": "4a959d998acd35cf88518a0f2f8ab99b42d9f69c7ce0d6a814df315eeac807ac"
+    },
+    {
+      "url": "/models/body-11.bin",
+      "sha256": "e8c1afe7f30fe710ad164ec9cd2287a32881606e7eb590af47d76b3f84405027"
+    },
+    {
+      "url": "/models/body-12.bin",
+      "sha256": "61a6c8da89bb20df50c575964ac81aa4090eabfc2cb27ad2155aea325f31c6c0"
+    },
+    {
+      "url": "/models/body-13.bin",
+      "sha256": "4c51b6be85d5b705d2b52b79b9ad1cdae0b65ad03c9402a2f2673c7633fd94f3"
+    },
+    {
+      "url": "/models/body-14.bin",
+      "sha256": "58604526a0cd9e7dca4d8587cd9a42f9dd03ec6c4ebbc22a9bf017b31246f7e7"
+    }
+  ],
+  "license": "CC BY 4.0",
+  "coordinateSystem": "meters / Y-up; original relative positions retained",
+  "records": [
+    {
+      "id": "pineal-gland",
+      "name": "松果体",
+      "concepts": [
+        "FMA62033"
+      ],
+      "parts": [
+        {
+          "id": "FJ1795",
+          "name": "Pineal body",
+          "conceptId": "FMA62033"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1795",
+          "label": "松果体",
+          "detail": "腺体外形；微观细胞结构未在模型中呈现"
+        }
+      ],
+      "bounds": [
+        [
+          -0.0036505935413044515,
+          1.6182911971591751,
+          -0.040832798928022385
+        ],
+        [
+          0.002614693453277332,
+          1.6260013004757126,
+          -0.029408499598503113
+        ]
+      ],
+      "bytes": 6540,
+      "sha256": "1eb72fb7b54f08f52e39d63a34e38bfe65338e323699ff30bf24be07c2a51ad5"
+    },
+    {
+      "id": "hippocampus",
+      "name": "海马",
+      "concepts": [
+        "FMA62493"
+      ],
+      "parts": [
+        {
+          "id": "FJ1759",
+          "name": "Left hippocampus",
+          "conceptId": "FMA72714"
+        },
+        {
+          "id": "FJ1807",
+          "name": "Right hippocampus",
+          "conceptId": "FMA72713"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1759",
+          "label": "左海马",
+          "detail": "左侧颞叶内侧的记忆相关结构"
+        },
+        {
+          "mesh": "FJ1807",
+          "label": "右海马",
+          "detail": "右侧海马，与左侧共同参与记忆和空间处理"
+        }
+      ],
+      "bounds": [
+        [
+          -0.03790455964273701,
+          1.6073597764808192,
+          -0.040553901344537735
+        ],
+        [
+          0.036599780504337834,
+          1.6293521483166677,
+          0.002351999981328845
+        ]
+      ],
+      "bytes": 14900,
+      "sha256": "23cd816dd1e387cfabf9d020670cbd6b033aaee57c9a87b8bac3b8aacb9e7893"
+    },
+    {
+      "id": "amygdala",
+      "name": "杏仁核",
+      "concepts": [
+        "FMA61841"
+      ],
+      "parts": [
+        {
+          "id": "FJ1753",
+          "name": "Left amygdala",
+          "conceptId": "FMA72833"
+        },
+        {
+          "id": "FJ1829",
+          "name": "Right amygdala",
+          "conceptId": "FMA72832"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1753",
+          "label": "左杏仁核",
+          "detail": "左侧杏仁核复合体"
+        },
+        {
+          "mesh": "FJ1829",
+          "label": "右杏仁核",
+          "detail": "右侧杏仁核复合体"
+        }
+      ],
+      "bounds": [
+        [
+          -0.034627673227270235,
+          1.610041137523587,
+          -0.010866399854421616
+        ],
+        [
+          0.03338530233977875,
+          1.6229008935806817,
+          0.007590999826788902
+        ]
+      ],
+      "bytes": 9660,
+      "sha256": "dff02bd150964a2878984268a87e5394b1251e50fa05652d1928ac6679277b62"
+    },
+    {
+      "id": "thalamus",
+      "name": "丘脑",
+      "concepts": [
+        "FMA62007"
+      ],
+      "parts": [
+        {
+          "id": "FJ1782",
+          "name": "Left thalamus",
+          "conceptId": "FMA258716"
+        },
+        {
+          "id": "FJ1827",
+          "name": "Right thalamus",
+          "conceptId": "FMA258714"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1782",
+          "label": "左丘脑",
+          "detail": "第三脑室左侧的丘脑"
+        },
+        {
+          "mesh": "FJ1827",
+          "label": "右丘脑",
+          "detail": "第三脑室右侧的丘脑"
+        }
+      ],
+      "bounds": [
+        [
+          -0.024604933698894677,
+          1.620180853737874,
+          -0.038193199783563614
+        ],
+        [
+          0.023373717981446523,
+          1.64386152373405,
+          -0.0016093000303953886
+        ]
+      ],
+      "bytes": 18880,
+      "sha256": "3d5068d3f33eda0d4fdbcaf28d3c7ca0b15e3687f1ee670926c4a89d7cc80083"
+    },
+    {
+      "id": "hypothalamus",
+      "name": "下丘脑",
+      "concepts": [
+        "FMA62008"
+      ],
+      "parts": [
+        {
+          "id": "FJ1760",
+          "name": "Hypothalamus",
+          "conceptId": "FMA62008"
+        },
+        {
+          "id": "FJ1780",
+          "name": "Tuber cinereum",
+          "conceptId": "FMA62327"
+        },
+        {
+          "id": "FJ1808",
+          "name": "Hypothalamus",
+          "conceptId": "FMA62008"
+        },
+        {
+          "id": "FJ1828",
+          "name": "Tuber cinereum",
+          "conceptId": "FMA62327"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1760",
+          "label": "下丘脑组织",
+          "detail": "下丘脑的一侧网格；不代表单个功能核"
+        },
+        {
+          "mesh": "FJ1780",
+          "label": "灰结节",
+          "detail": "下丘脑底部的结构，邻近漏斗部"
+        }
+      ],
+      "bounds": [
+        [
+          -0.00924957840136099,
+          1.6102311611175537,
+          -0.0077642387908815995
+        ],
+        [
+          0.007939610214420433,
+          1.6302112340927124,
+          0.010177439005386795
+        ]
+      ],
+      "bytes": 40800,
+      "sha256": "867cfe26d1b205cf96cf8f58d6ab0e76b26191ba6ca911635281fa7a9fc00bd7"
+    },
+    {
+      "id": "corpus-callosum",
+      "name": "胼胝体",
+      "concepts": [
+        "FMA86464"
+      ],
+      "parts": [
+        {
+          "id": "FJ1742",
+          "name": "Corpus callosum",
+          "conceptId": "FMA86464"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1742",
+          "label": "胼胝体",
+          "detail": "连接左右半球的连合白质；模型为整体外形"
+        }
+      ],
+      "bounds": [
+        [
+          -0.02653683530397025,
+          1.6225190244121208,
+          -0.060566600412130356
+        ],
+        [
+          0.02519253636009303,
+          1.6613733687000618,
+          0.031045999377965927
+        ]
+      ],
+      "bytes": 56216,
+      "sha256": "f6202c6b094efc9ac89c8acfc95ceff5ad24ed5a868a915bf33af5d6a646460e"
+    },
+    {
+      "id": "brain-ventricles",
+      "name": "脑室系统",
+      "concepts": [
+        "FMA242787"
+      ],
+      "parts": [
+        {
+          "id": "FJ1730",
+          "name": "Third ventricle",
+          "conceptId": "FMA78454"
+        },
+        {
+          "id": "FJ1731",
+          "name": "Fourth ventricle",
+          "conceptId": "FMA78469"
+        },
+        {
+          "id": "FJ1738",
+          "name": "Cerebral aqueduct",
+          "conceptId": "FMA78467"
+        },
+        {
+          "id": "FJ1767",
+          "name": "Left lateral ventricle",
+          "conceptId": "FMA78450"
+        },
+        {
+          "id": "FJ1814",
+          "name": "Right lateral ventricle",
+          "conceptId": "FMA78449"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1767",
+          "label": "左侧脑室",
+          "detail": "位于左大脑半球内的腔隙"
+        },
+        {
+          "mesh": "FJ1814",
+          "label": "右侧脑室",
+          "detail": "位于右大脑半球内的腔隙"
+        },
+        {
+          "mesh": "FJ1730",
+          "label": "第三脑室",
+          "detail": "位于间脑中线"
+        },
+        {
+          "mesh": "FJ1738",
+          "label": "脑导水管",
+          "detail": "连接第三与第四脑室"
+        },
+        {
+          "mesh": "FJ1731",
+          "label": "第四脑室",
+          "detail": "位于脑干与小脑之间"
+        }
+      ],
+      "bounds": [
+        [
+          -0.039396073768584484,
+          1.5692311525344849,
+          -0.08238829672336578
+        ],
+        [
+          0.03806397730536122,
+          1.6574426747840163,
+          0.026938000693917274
+        ]
+      ],
+      "bytes": 86248,
+      "sha256": "6db008e071803574138ea55e2e4fcbe02813572207b20abd8cb5b66c074dbe51"
+    },
+    {
+      "id": "aorta",
+      "name": "主动脉",
+      "concepts": [
+        "FMA3734"
+      ],
+      "parts": [
+        {
+          "id": "FJ1931",
+          "name": "Descending thoracic aorta",
+          "conceptId": "FMA87217"
+        },
+        {
+          "id": "FJ1932",
+          "name": "Abdominal aorta",
+          "conceptId": "FMA3789"
+        },
+        {
+          "id": "FJ3411",
+          "name": "Arch of aorta",
+          "conceptId": "FMA3768"
+        },
+        {
+          "id": "FJ3413",
+          "name": "Ascending aorta",
+          "conceptId": "FMA3736"
+        },
+        {
+          "id": "FJ3427",
+          "name": "Descending aorta",
+          "conceptId": "FMA3784"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3413",
+          "label": "升主动脉",
+          "detail": "主动脉自心脏发出的上行段"
+        },
+        {
+          "mesh": "FJ3411",
+          "label": "主动脉弓",
+          "detail": "连接升段与降段"
+        },
+        {
+          "mesh": "FJ1931",
+          "label": "胸主动脉",
+          "detail": "胸腔中的下降段"
+        },
+        {
+          "mesh": "FJ1932",
+          "label": "腹主动脉",
+          "detail": "进入腹腔后的主干"
+        }
+      ],
+      "bounds": [
+        [
+          -0.006823196809159167,
+          1.0248901844024658,
+          -0.05490434518821269
+        ],
+        [
+          0.034837310001493454,
+          1.3952006756765725,
+          0.037440417563580186
+        ]
+      ],
+      "bytes": 30984,
+      "sha256": "defcf7774d7dd032e81c5ab26e36551421f91caac50c5fe7bd83bac3f8eec079"
+    },
+    {
+      "id": "superior-vena-cava",
+      "name": "上腔静脉",
+      "concepts": [
+        "FMA4720"
+      ],
+      "parts": [
+        {
+          "id": "FJ3645",
+          "name": "Superior vena cava",
+          "conceptId": "FMA4720"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3645",
+          "label": "上腔静脉主干",
+          "detail": "将血液导向右心房的短主干"
+        }
+      ],
+      "bounds": [
+        [
+          -0.026634686291349116,
+          1.3529212474822998,
+          0.003588073141634134
+        ],
+        [
+          -0.004109643734860238,
+          1.3879112005233765,
+          0.0272749269383553
+        ]
+      ],
+      "bytes": 6536,
+      "sha256": "18451edb28c93f2a95e4b3237e55fa6f0fbd685b28747a5b7b4c6b86bc567c57"
+    },
+    {
+      "id": "inferior-vena-cava",
+      "name": "下腔静脉",
+      "concepts": [
+        "FMA10951"
+      ],
+      "parts": [
+        {
+          "id": "FJ3441",
+          "name": "Inferior vena cava",
+          "conceptId": "FMA10951"
+        },
+        {
+          "id": "FJ3659",
+          "name": "Inferior vena cava",
+          "conceptId": "FMA10951"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3441",
+          "label": "下腔静脉分段",
+          "detail": "沿腹部上行的主干网格"
+        },
+        {
+          "mesh": "FJ3659",
+          "label": "下腔静脉另一分段",
+          "detail": "保留源模型主干各段的相对位置"
+        }
+      ],
+      "bounds": [
+        [
+          -0.02669461674153612,
+          1.0291062593460083,
+          0.003554479169180424
+        ],
+        [
+          -0.0021537900561686297,
+          1.268611192703247,
+          0.028620397100003053
+        ]
+      ],
+      "bytes": 10404,
+      "sha256": "3502009fcc7e81c52e9950f1bb5b7379e5b3b3952db23cd14e6a315a1526d3a8"
+    },
+    {
+      "id": "hepatic-portal-vein",
+      "name": "肝门静脉",
+      "concepts": [
+        "FMA45847"
+      ],
+      "parts": [
+        {
+          "id": "FJ1853",
+          "name": "Hepatic portal vein",
+          "conceptId": "FMA50735"
+        },
+        {
+          "id": "FJ1893",
+          "name": "Left portal vein",
+          "conceptId": "FMA15415"
+        },
+        {
+          "id": "FJ1913",
+          "name": "Right portal vein",
+          "conceptId": "FMA15414"
+        },
+        {
+          "id": "FJ1914",
+          "name": "Caudate lobe branch of right portal vein",
+          "conceptId": "FMA82706"
+        },
+        {
+          "id": "FJ2404",
+          "name": "Left portal vein",
+          "conceptId": "FMA15415"
+        },
+        {
+          "id": "FJ2405",
+          "name": "Right portal vein",
+          "conceptId": "FMA15414"
+        },
+        {
+          "id": "FJ3073",
+          "name": "Anterior superior segmental branch of right portal vein",
+          "conceptId": "FMA15420"
+        },
+        {
+          "id": "FJ3074",
+          "name": "Anterior inferior segmental branch of right portal vein",
+          "conceptId": "FMA15421"
+        },
+        {
+          "id": "FJ3082",
+          "name": "Pre-hepatic portal vein",
+          "conceptId": "FMA71904"
+        },
+        {
+          "id": "FJ3102",
+          "name": "Trunk of left portal vein",
+          "conceptId": "FMA82697"
+        },
+        {
+          "id": "FJ3111",
+          "name": "Posterior inferior segmental branch of right portal vein",
+          "conceptId": "FMA15424"
+        },
+        {
+          "id": "FJ3112",
+          "name": "Posterior superior segmental branch of right portal vein",
+          "conceptId": "FMA15423"
+        },
+        {
+          "id": "FJ3113",
+          "name": "Posterior superior segmental branch of right portal vein",
+          "conceptId": "FMA15423"
+        },
+        {
+          "id": "FJ3122",
+          "name": "Trunk of right portal vein",
+          "conceptId": "FMA82695"
+        },
+        {
+          "id": "FJ3124",
+          "name": "Caudate lobe branch of left portal vein",
+          "conceptId": "FMA15425"
+        },
+        {
+          "id": "FJ3125",
+          "name": "Lateral inferior segmental branch of left portal vein",
+          "conceptId": "FMA15432"
+        },
+        {
+          "id": "FJ3126",
+          "name": "Lateral superior segmental branch of left portal vein",
+          "conceptId": "FMA15431"
+        },
+        {
+          "id": "FJ3127",
+          "name": "Medial superior segmental branch of left portal vein",
+          "conceptId": "FMA15428"
+        },
+        {
+          "id": "FJ3128",
+          "name": "Medial inferior segmental branch of left portal vein",
+          "conceptId": "FMA15429"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3082",
+          "label": "肝前门静脉",
+          "detail": "进入肝脏之前的门静脉段"
+        },
+        {
+          "mesh": "FJ3102",
+          "label": "左门静脉主干",
+          "detail": "通向肝左侧的门静脉分支"
+        },
+        {
+          "mesh": "FJ3122",
+          "label": "右门静脉主干",
+          "detail": "通向肝右侧的门静脉分支"
+        }
+      ],
+      "bounds": [
+        [
+          -0.10138449916516547,
+          1.1404411792755127,
+          -0.05041459947824478
+        ],
+        [
+          0.057327501475811005,
+          1.2414637060591125,
+          0.09950125112226602
+        ]
+      ],
+      "bytes": 159228,
+      "sha256": "c188dc695f660cf8aea5c4c84e022e4e272ac78e5564747219d28883abf4360e"
+    },
+    {
+      "id": "biliary-tree",
+      "name": "胆道系统",
+      "concepts": [
+        "FMA14665",
+        "FMA71856"
+      ],
+      "parts": [
+        {
+          "id": "FJ1883",
+          "name": "Caudate lobe tributary of left hepatic biliary tree",
+          "conceptId": "FMA71889"
+        },
+        {
+          "id": "FJ3071",
+          "name": "Anterior superior tributary of right hepatic biliary tree",
+          "conceptId": "FMA71867"
+        },
+        {
+          "id": "FJ3072",
+          "name": "Anterior inferior tributary of right hepatic biliary tree",
+          "conceptId": "FMA71868"
+        },
+        {
+          "id": "FJ3079",
+          "name": "Common hepatic duct",
+          "conceptId": "FMA14668"
+        },
+        {
+          "id": "FJ3080",
+          "name": "Cystic duct",
+          "conceptId": "FMA14539"
+        },
+        {
+          "id": "FJ3088",
+          "name": "Lateral superior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71887"
+        },
+        {
+          "id": "FJ3089",
+          "name": "Lateral inferior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71888"
+        },
+        {
+          "id": "FJ3090",
+          "name": "Lateral superior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71887"
+        },
+        {
+          "id": "FJ3096",
+          "name": "Left hepatic duct",
+          "conceptId": "FMA14670"
+        },
+        {
+          "id": "FJ3103",
+          "name": "Medial inferior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71886"
+        },
+        {
+          "id": "FJ3104",
+          "name": "Medial superior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71885"
+        },
+        {
+          "id": "FJ3105",
+          "name": "Medial superior tributary of left hepatic biliary tree",
+          "conceptId": "FMA71885"
+        },
+        {
+          "id": "FJ3108",
+          "name": "Posterior inferior tributary of right hepatic biliary tree",
+          "conceptId": "FMA71870"
+        },
+        {
+          "id": "FJ3109",
+          "name": "Posterior superior tributary of right hepatic biliary tree",
+          "conceptId": "FMA71869"
+        },
+        {
+          "id": "FJ3110",
+          "name": "Posterior superior tributary of right hepatic biliary tree",
+          "conceptId": "FMA71869"
+        },
+        {
+          "id": "FJ3123",
+          "name": "Right hepatic duct",
+          "conceptId": "FMA14669"
+        },
+        {
+          "id": "FJ3094",
+          "name": "Left duct of caudate lobe of liver",
+          "conceptId": "FMA76903"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3096",
+          "label": "左肝管",
+          "detail": "汇集肝左侧胆汁"
+        },
+        {
+          "mesh": "FJ3123",
+          "label": "右肝管",
+          "detail": "汇集肝右侧胆汁"
+        },
+        {
+          "mesh": "FJ3079",
+          "label": "肝总管",
+          "detail": "左右肝管汇合后的管道"
+        },
+        {
+          "mesh": "FJ3080",
+          "label": "胆囊管",
+          "detail": "连接胆囊与肝外胆道"
+        }
+      ],
+      "bounds": [
+        [
+          -0.09184341018916424,
+          1.0977212190628052,
+          -0.0445839986205101
+        ],
+        [
+          0.05766350030899048,
+          1.2405910867771823,
+          0.09823200106620789
+        ]
+      ],
+      "bytes": 99248,
+      "sha256": "84e239b67b4a94a94c77847deaebdbeb1a47bddab94a48e6c375535a08ad47d5"
+    },
+    {
+      "id": "pancreatic-ducts",
+      "name": "胰管系统",
+      "concepts": [
+        "FMA63103"
+      ],
+      "parts": [
+        {
+          "id": "FJ1896",
+          "name": "Pancreatic duct",
+          "conceptId": "FMA10419"
+        },
+        {
+          "id": "FJ2630",
+          "name": "Pancreatic duct tree",
+          "conceptId": "FMA63103"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1896",
+          "label": "胰管",
+          "detail": "源模型标识的胰管段"
+        },
+        {
+          "mesh": "FJ2630",
+          "label": "胰管树",
+          "detail": "源模型保留的导管分支"
+        }
+      ],
+      "bounds": [
+        [
+          -0.056706901639699936,
+          1.0982550671799076,
+          0.001973051836377311
+        ],
+        [
+          0.06149689853191376,
+          1.1466173836486446,
+          0.03840220093397026
+        ]
+      ],
+      "bytes": 63004,
+      "sha256": "f458eb58dcf9db27f43e3afdc28743660c6e866805b1d6d7b477aedad879c0df"
+    },
+    {
+      "id": "mesentery",
+      "name": "肠系膜",
+      "concepts": [
+        "FMA20570"
+      ],
+      "parts": [
+        {
+          "id": "FJ3396",
+          "name": "Mesentery of small intestine",
+          "conceptId": "FMA14643"
+        },
+        {
+          "id": "FJ3397",
+          "name": "Mesoappendix",
+          "conceptId": "FMA16549"
+        },
+        {
+          "id": "FJ3398",
+          "name": "Transverse mesocolon",
+          "conceptId": "FMA14647"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3396",
+          "label": "小肠系膜",
+          "detail": "连接空肠和回肠相关肠袢"
+        },
+        {
+          "mesh": "FJ3397",
+          "label": "阑尾系膜",
+          "detail": "与阑尾相连的小片系膜"
+        },
+        {
+          "mesh": "FJ3398",
+          "label": "横结肠系膜",
+          "detail": "支持横结肠的系膜"
+        }
+      ],
+      "bounds": [
+        [
+          -0.0830909013748169,
+          0.8979582190513611,
+          -0.04941447551576267
+        ],
+        [
+          0.09255668936454133,
+          1.1417311429977417,
+          0.08177427674857746
+        ]
+      ],
+      "bytes": 458516,
+      "sha256": "ae05c9546de4853e7f713edaf756530e3a7ec5d8a10db42a3b9d523e926ecae1"
+    },
+    {
+      "id": "seminal-vesicles",
+      "name": "精囊（男性参考）",
+      "concepts": [
+        "FMA19386"
+      ],
+      "parts": [
+        {
+          "id": "FJ3137",
+          "name": "Left seminal vesicle",
+          "conceptId": "FMA19388"
+        },
+        {
+          "id": "FJ3143",
+          "name": "Right seminal vesicle",
+          "conceptId": "FMA19387"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3137",
+          "label": "左精囊",
+          "detail": "左侧附属生殖腺"
+        },
+        {
+          "mesh": "FJ3143",
+          "label": "右精囊",
+          "detail": "右侧附属生殖腺"
+        }
+      ],
+      "bounds": [
+        [
+          -0.03532379865646362,
+          0.8669531941144647,
+          -0.045129478279188326
+        ],
+        [
+          0.03401400148868561,
+          0.896429240730506,
+          -0.024947821792527983
+        ]
+      ],
+      "bytes": 10408,
+      "sha256": "12c994e8e59eba24bd5f2da2b541b66b17163a6c7c32a669fd64110cb07680a9"
+    },
+    {
+      "id": "ductus-deferens",
+      "name": "输精管（男性参考）",
+      "concepts": [
+        "FMA19234"
+      ],
+      "parts": [
+        {
+          "id": "FJ3135",
+          "name": "Left deferent duct",
+          "conceptId": "FMA19236"
+        },
+        {
+          "id": "FJ3140",
+          "name": "Right deferent duct",
+          "conceptId": "FMA19235"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ3135",
+          "label": "左输精管",
+          "detail": "左侧管道的空间行程"
+        },
+        {
+          "mesh": "FJ3140",
+          "label": "右输精管",
+          "detail": "右侧管道的空间行程"
+        }
+      ],
+      "bounds": [
+        [
+          -0.08408004465389166,
+          0.7727012038230896,
+          -0.04743340980644359
+        ],
+        [
+          0.10251107149173347,
+          0.9390102028846741,
+          0.05480090897913112
+        ]
+      ],
+      "bytes": 20636,
+      "sha256": "cacb0e9b432e4b251920601796e159bea5e6a3ac550a24ea33a6604aa508b5aa"
+    },
+    {
+      "id": "lacrimal-apparatus",
+      "name": "泪器",
+      "concepts": [
+        "FMA59368",
+        "FMA59369"
+      ],
+      "parts": [
+        {
+          "id": "FJ1349",
+          "name": "Right lacrimal canaliculus",
+          "conceptId": "FMA59582"
+        },
+        {
+          "id": "FJ1350",
+          "name": "Right lacrimal gland",
+          "conceptId": "FMA59102"
+        },
+        {
+          "id": "FJ1352",
+          "name": "Right lacrimal lake",
+          "conceptId": "FMA59541"
+        },
+        {
+          "id": "FJ1353",
+          "name": "Right nasolacrimal duct",
+          "conceptId": "FMA59555"
+        },
+        {
+          "id": "FJ1360",
+          "name": "Right lacrimal sac",
+          "conceptId": "FMA59545"
+        },
+        {
+          "id": "FJ1298",
+          "name": "Left lacrimal canaliculus",
+          "conceptId": "FMA59583"
+        },
+        {
+          "id": "FJ1299",
+          "name": "Left lacrimal gland",
+          "conceptId": "FMA59103"
+        },
+        {
+          "id": "FJ1301",
+          "name": "Left lacrimal lake",
+          "conceptId": "FMA59542"
+        },
+        {
+          "id": "FJ1302",
+          "name": "Left nasolacrimal duct",
+          "conceptId": "FMA59556"
+        },
+        {
+          "id": "FJ1309",
+          "name": "Left lacrimal sac",
+          "conceptId": "FMA59546"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1299",
+          "label": "左泪腺",
+          "detail": "位于眼眶外上方的分泌结构"
+        },
+        {
+          "mesh": "FJ1350",
+          "label": "右泪腺",
+          "detail": "右侧泪液分泌结构"
+        },
+        {
+          "mesh": "FJ1309",
+          "label": "左泪囊",
+          "detail": "承接泪小管引流"
+        },
+        {
+          "mesh": "FJ1302",
+          "label": "左鼻泪管",
+          "detail": "由泪囊向鼻腔延伸"
+        }
+      ],
+      "bounds": [
+        [
+          -0.04780127021652651,
+          1.565831184387207,
+          0.048994579032485504
+        ],
+        [
+          0.04647384238206449,
+          1.613491177558899,
+          0.06508404289021787
+        ]
+      ],
+      "bytes": 60940,
+      "sha256": "850bb26f627e017a446fb897e8c0f9bd6f96c62b0ba25ec7793ad0ebd3dbe0e5"
+    },
+    {
+      "id": "extraocular-muscles",
+      "name": "眼外肌",
+      "concepts": [
+        "FMA49033"
+      ],
+      "parts": [
+        {
+          "id": "FJ1294",
+          "name": "Left inferior oblique",
+          "conceptId": "FMA49051"
+        },
+        {
+          "id": "FJ1295",
+          "name": "Left inferior rectus",
+          "conceptId": "FMA49047"
+        },
+        {
+          "id": "FJ1304",
+          "name": "Left lateral rectus",
+          "conceptId": "FMA49055"
+        },
+        {
+          "id": "FJ1306",
+          "name": "Left levator palpebrae superioris",
+          "conceptId": "FMA49049"
+        },
+        {
+          "id": "FJ1308",
+          "name": "Left medial rectus",
+          "conceptId": "FMA49057"
+        },
+        {
+          "id": "FJ1322",
+          "name": "Left superior oblique",
+          "conceptId": "FMA49053"
+        },
+        {
+          "id": "FJ1323",
+          "name": "Left superior rectus",
+          "conceptId": "FMA49045"
+        },
+        {
+          "id": "FJ1345",
+          "name": "Right inferior oblique",
+          "conceptId": "FMA49050"
+        },
+        {
+          "id": "FJ1346",
+          "name": "Right inferior rectus",
+          "conceptId": "FMA49046"
+        },
+        {
+          "id": "FJ1355",
+          "name": "Right lateral rectus",
+          "conceptId": "FMA49054"
+        },
+        {
+          "id": "FJ1357",
+          "name": "Right levator palpebrae superioris",
+          "conceptId": "FMA49048"
+        },
+        {
+          "id": "FJ1359",
+          "name": "Right medial rectus",
+          "conceptId": "FMA49056"
+        },
+        {
+          "id": "FJ1373",
+          "name": "Right superior oblique",
+          "conceptId": "FMA49052"
+        },
+        {
+          "id": "FJ1374",
+          "name": "Right superior rectus",
+          "conceptId": "FMA49044"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1304",
+          "label": "左外直肌",
+          "detail": "使眼球向外转动"
+        },
+        {
+          "mesh": "FJ1308",
+          "label": "左内直肌",
+          "detail": "使眼球向内转动"
+        },
+        {
+          "mesh": "FJ1322",
+          "label": "左上斜肌",
+          "detail": "参与复合眼球运动"
+        },
+        {
+          "mesh": "FJ1306",
+          "label": "左提上睑肌",
+          "detail": "上提上睑，不计入六条眼球运动肌"
+        }
+      ],
+      "bounds": [
+        [
+          -0.04409202262100942,
+          1.5812704256823653,
+          0.019039999693632126
+        ],
+        [
+          0.04279645811172354,
+          1.6150824807863224,
+          0.06630669932716497
+        ]
+      ],
+      "bytes": 107624,
+      "sha256": "48440525f8578489a948e2a0e3e7b486c0782fa52c9eeb2bc441259faa84e44d"
+    },
+    {
+      "id": "hyoid",
+      "name": "舌骨",
+      "concepts": [
+        "FMA52749"
+      ],
+      "parts": [
+        {
+          "id": "FJ2772",
+          "name": "Hyoid bone",
+          "conceptId": "FMA52749"
+        },
+        {
+          "id": "FJ3201",
+          "name": "Hyoid bone",
+          "conceptId": "FMA52749"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ2772",
+          "label": "舌骨网格",
+          "detail": "源模型中的舌骨组成部分"
+        },
+        {
+          "mesh": "FJ3201",
+          "label": "舌骨另一网格",
+          "detail": "保留原始相对位置，不将网格数当作骨数"
+        }
+      ],
+      "bounds": [
+        [
+          -0.01952419988811016,
+          1.5004822543787013,
+          -0.00556516007132404
+        ],
+        [
+          0.01825059950351715,
+          1.5189701982809056,
+          0.02900015900454991
+        ]
+      ],
+      "bytes": 11112,
+      "sha256": "3a0fae792cd7129573bf8f23ab419cb978b69a89aa82a92b939d0d9399e2f83f"
+    },
+    {
+      "id": "achilles-tendons",
+      "name": "跟腱",
+      "concepts": [
+        "FMA51061"
+      ],
+      "parts": [
+        {
+          "id": "FJ1405",
+          "name": "Right calcaneal tendon",
+          "conceptId": "FMA258847"
+        },
+        {
+          "id": "FJ1405M",
+          "name": "Left calcaneal tendon",
+          "conceptId": "FMA264844"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1405",
+          "label": "右跟腱",
+          "detail": "右侧小腿肌群至跟骨的传力结构"
+        },
+        {
+          "mesh": "FJ1405M",
+          "label": "左跟腱",
+          "detail": "左侧跟腱"
+        }
+      ],
+      "bounds": [
+        [
+          -0.09771715448237302,
+          0.02195660024881363,
+          -0.07533472029780294
+        ],
+        [
+          0.09771715448237302,
+          0.23593419790267944,
+          -0.044719029233704556
+        ]
+      ],
+      "bytes": 46104,
+      "sha256": "2893bfc272a1fd906704d594b09176d54898392eed8dbdd39d280c7061ebd694"
+    },
+    {
+      "id": "intercostal-muscles",
+      "name": "肋间肌",
+      "concepts": [
+        "FMA13354"
+      ],
+      "parts": [
+        {
+          "id": "FJ1451",
+          "name": "external intercostal muscle",
+          "conceptId": "FMA9756"
+        },
+        {
+          "id": "FJ1451M",
+          "name": "External intercostal muscle",
+          "conceptId": "FMA9756"
+        },
+        {
+          "id": "FJ1454",
+          "name": "innermost intercostal muscle",
+          "conceptId": "FMA9758"
+        },
+        {
+          "id": "FJ1454M",
+          "name": "Innermost intercostal muscle",
+          "conceptId": "FMA9758"
+        },
+        {
+          "id": "FJ1455",
+          "name": "internal intercostal muscle",
+          "conceptId": "FMA9757"
+        },
+        {
+          "id": "FJ1455M",
+          "name": "Internal intercostal muscle",
+          "conceptId": "FMA9757"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1451",
+          "label": "肋间外肌层",
+          "detail": "外层肋间肌网格"
+        },
+        {
+          "mesh": "FJ1455",
+          "label": "肋间内肌层",
+          "detail": "内层肋间肌网格"
+        },
+        {
+          "mesh": "FJ1454",
+          "label": "肋间最内肌层",
+          "detail": "较深层的肋间肌网格"
+        }
+      ],
+      "bounds": [
+        [
+          -0.1361667033139436,
+          1.0896211862564087,
+          -0.09671314429033245
+        ],
+        [
+          0.1361730921780513,
+          1.443481206893921,
+          0.10919458925790879
+        ]
+      ],
+      "bytes": 1972404,
+      "sha256": "7e5163768389278410404c2963e746402d64e151521ac4e73fa96d99ac4b138b"
+    },
+    {
+      "id": "quadriceps",
+      "name": "股四头肌",
+      "concepts": [
+        "FMA22429"
+      ],
+      "parts": [
+        {
+          "id": "FJ1433",
+          "name": "Right rectus femoris",
+          "conceptId": "FMA38928"
+        },
+        {
+          "id": "FJ1433M",
+          "name": "Left rectus femoris",
+          "conceptId": "FMA38929"
+        },
+        {
+          "id": "FJ1441",
+          "name": "Right vastus intermedius",
+          "conceptId": "FMA38934"
+        },
+        {
+          "id": "FJ1441M",
+          "name": "Left vastus intermedius",
+          "conceptId": "FMA38935"
+        },
+        {
+          "id": "FJ1442",
+          "name": "Right vastus lateralis",
+          "conceptId": "FMA38930"
+        },
+        {
+          "id": "FJ1442M",
+          "name": "Left vastus lateralis",
+          "conceptId": "FMA38931"
+        },
+        {
+          "id": "FJ1443",
+          "name": "Right vastus medialis",
+          "conceptId": "FMA38932"
+        },
+        {
+          "id": "FJ1443M",
+          "name": "Left vastus medialis",
+          "conceptId": "FMA38933"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1433",
+          "label": "右股直肌",
+          "detail": "跨过髋关节与膝关节"
+        },
+        {
+          "mesh": "FJ1442",
+          "label": "右股外侧肌",
+          "detail": "股四头肌外侧部分"
+        },
+        {
+          "mesh": "FJ1443",
+          "label": "右股内侧肌",
+          "detail": "股四头肌内侧部分"
+        },
+        {
+          "mesh": "FJ1441",
+          "label": "右股中间肌",
+          "detail": "位于股直肌深面"
+        }
+      ],
+      "bounds": [
+        [
+          -0.15962820087325916,
+          0.39281919598579407,
+          -0.042486423588740066
+        ],
+        [
+          0.15962870006215915,
+          0.9492151737213135,
+          0.05244929933864283
+        ]
+      ],
+      "bytes": 101924,
+      "sha256": "8f7000e578ed43e72c4876a32f12a93a2b7e040f2bfc5074816723c12f526661"
+    },
+    {
+      "id": "gluteal-muscles",
+      "name": "臀肌群",
+      "concepts": [
+        "FMA64922"
+      ],
+      "parts": [
+        {
+          "id": "FJ1418",
+          "name": "Right gluteus maximus",
+          "conceptId": "FMA22328"
+        },
+        {
+          "id": "FJ1418M",
+          "name": "Left gluteus maximus",
+          "conceptId": "FMA22329"
+        },
+        {
+          "id": "FJ1419",
+          "name": "Right gluteus medius",
+          "conceptId": "FMA22330"
+        },
+        {
+          "id": "FJ1419M",
+          "name": "Left gluteus medius",
+          "conceptId": "FMA22331"
+        },
+        {
+          "id": "FJ1420",
+          "name": "Right gluteus minimus",
+          "conceptId": "FMA22332"
+        },
+        {
+          "id": "FJ1420M",
+          "name": "Left gluteus minimus",
+          "conceptId": "FMA22333"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ1418",
+          "label": "右臀大肌",
+          "detail": "主要参与伸髋"
+        },
+        {
+          "mesh": "FJ1419",
+          "label": "右臀中肌",
+          "detail": "参与外展与骨盆稳定"
+        },
+        {
+          "mesh": "FJ1420",
+          "label": "右臀小肌",
+          "detail": "位于臀中肌深面"
+        }
+      ],
+      "bounds": [
+        [
+          -0.14973768746135807,
+          0.7458562254905701,
+          -0.11985784197554106
+        ],
+        [
+          0.14973718827245808,
+          1.029014229774475,
+          0.0022732553827681905
+        ]
+      ],
+      "bytes": 101132,
+      "sha256": "83bf1d9fd2385af393d414dcd2e10bd7a6330513e6a336d5dae80fe948632d62"
+    },
+    {
+      "id": "bronchial-tree",
+      "name": "肺内支气管树",
+      "concepts": [
+        "FMA31739"
+      ],
+      "parts": [
+        {
+          "id": "FJ2441",
+          "name": "Inferior lingular bronchial tree",
+          "conceptId": "FMA68227"
+        },
+        {
+          "id": "FJ2442",
+          "name": "Left medial basal segmental bronchial tree",
+          "conceptId": "FMA68230"
+        },
+        {
+          "id": "FJ2443",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2444",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2445",
+          "name": "Left lateral basal segmental bronchial tree",
+          "conceptId": "FMA68232"
+        },
+        {
+          "id": "FJ2446",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2447",
+          "name": "Left posterior segmental bronchial tree",
+          "conceptId": "FMA68225"
+        },
+        {
+          "id": "FJ2448",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2449",
+          "name": "Lateral segmental bronchial tree",
+          "conceptId": "FMA68215"
+        },
+        {
+          "id": "FJ2451",
+          "name": "Medial segmental bronchial tree",
+          "conceptId": "FMA68214"
+        },
+        {
+          "id": "FJ2452",
+          "name": "Right anterior basal segmental bronchial tree",
+          "conceptId": "FMA68321"
+        },
+        {
+          "id": "FJ2453",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2454",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2455",
+          "name": "Right lateral basal segmental bronchial tree",
+          "conceptId": "FMA68220"
+        },
+        {
+          "id": "FJ2456",
+          "name": "Right medial basal segmental bronchial tree",
+          "conceptId": "FMA68218"
+        },
+        {
+          "id": "FJ2457",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2458",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2459",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2460",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2461",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2462",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2463",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2464",
+          "name": "Left apical segmental bronchial tree",
+          "conceptId": "FMA68223"
+        },
+        {
+          "id": "FJ2465",
+          "name": "Left posterior segmental bronchial tree",
+          "conceptId": "FMA68225"
+        },
+        {
+          "id": "FJ2466",
+          "name": "Left posterior segmental bronchial tree",
+          "conceptId": "FMA68225"
+        },
+        {
+          "id": "FJ2467",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2468",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2469",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2470",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2471",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2472",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2473",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2474",
+          "name": "Left anterior segmental bronchial tree",
+          "conceptId": "FMA68222"
+        },
+        {
+          "id": "FJ2475",
+          "name": "Inferior lingular bronchial tree",
+          "conceptId": "FMA68227"
+        },
+        {
+          "id": "FJ2476",
+          "name": "Superior lingular bronchial tree",
+          "conceptId": "FMA68226"
+        },
+        {
+          "id": "FJ2477",
+          "name": "Superior lingular bronchial tree",
+          "conceptId": "FMA68226"
+        },
+        {
+          "id": "FJ2478",
+          "name": "Superior lingular bronchial tree",
+          "conceptId": "FMA68226"
+        },
+        {
+          "id": "FJ2479",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2480",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2481",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2482",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2483",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2484",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2485",
+          "name": "Left superior segmental bronchial tree",
+          "conceptId": "FMA68228"
+        },
+        {
+          "id": "FJ2486",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2487",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2488",
+          "name": "Right medial basal segmental bronchial tree",
+          "conceptId": "FMA68218"
+        },
+        {
+          "id": "FJ2489",
+          "name": "Right posterior basal segmental bronchial tree",
+          "conceptId": "FMA68221"
+        },
+        {
+          "id": "FJ2490",
+          "name": "Right lateral basal segmental bronchial tree",
+          "conceptId": "FMA68220"
+        },
+        {
+          "id": "FJ2491",
+          "name": "Right lateral basal segmental bronchial tree",
+          "conceptId": "FMA68220"
+        },
+        {
+          "id": "FJ2492",
+          "name": "Right lateral basal segmental bronchial tree",
+          "conceptId": "FMA68220"
+        },
+        {
+          "id": "FJ2493",
+          "name": "Right anterior basal segmental bronchial tree",
+          "conceptId": "FMA68321"
+        },
+        {
+          "id": "FJ2494",
+          "name": "Right anterior basal segmental bronchial tree",
+          "conceptId": "FMA68321"
+        },
+        {
+          "id": "FJ2495",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2496",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2497",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2498",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2499",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2500",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2501",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2502",
+          "name": "Right superior segmental bronchial tree",
+          "conceptId": "FMA68216"
+        },
+        {
+          "id": "FJ2503",
+          "name": "Lateral segmental bronchial tree",
+          "conceptId": "FMA68215"
+        },
+        {
+          "id": "FJ2504",
+          "name": "Lateral segmental bronchial tree",
+          "conceptId": "FMA68215"
+        },
+        {
+          "id": "FJ2505",
+          "name": "Lateral segmental bronchial tree",
+          "conceptId": "FMA68215"
+        },
+        {
+          "id": "FJ2506",
+          "name": "Medial segmental bronchial tree",
+          "conceptId": "FMA68214"
+        },
+        {
+          "id": "FJ2507",
+          "name": "Medial segmental bronchial tree",
+          "conceptId": "FMA68214"
+        },
+        {
+          "id": "FJ2508",
+          "name": "Medial segmental bronchial tree",
+          "conceptId": "FMA68214"
+        },
+        {
+          "id": "FJ2509",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2510",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2511",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2512",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2513",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2514",
+          "name": "Right anterior segmental bronchial tree",
+          "conceptId": "FMA68212"
+        },
+        {
+          "id": "FJ2515",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2516",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2517",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2518",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2519",
+          "name": "Right posterior segmental bronchial tree",
+          "conceptId": "FMA68213"
+        },
+        {
+          "id": "FJ2520",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2521",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2522",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2523",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2524",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2525",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2526",
+          "name": "Right apical segmental bronchial tree",
+          "conceptId": "FMA68211"
+        },
+        {
+          "id": "FJ2527",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2528",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2529",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2530",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2531",
+          "name": "Left posterior basal segmental bronchial tree",
+          "conceptId": "FMA68233"
+        },
+        {
+          "id": "FJ2532",
+          "name": "Left lateral basal segmental bronchial tree",
+          "conceptId": "FMA68232"
+        },
+        {
+          "id": "FJ2533",
+          "name": "Left lateral basal segmental bronchial tree",
+          "conceptId": "FMA68232"
+        },
+        {
+          "id": "FJ2534",
+          "name": "Left lateral basal segmental bronchial tree",
+          "conceptId": "FMA68232"
+        },
+        {
+          "id": "FJ2535",
+          "name": "Left anterior basal segmental bronchial tree",
+          "conceptId": "FMA68231"
+        },
+        {
+          "id": "FJ2536",
+          "name": "Left anterior basal segmental bronchial tree",
+          "conceptId": "FMA68231"
+        },
+        {
+          "id": "FJ2537",
+          "name": "Left medial basal segmental bronchial tree",
+          "conceptId": "FMA68230"
+        },
+        {
+          "id": "FJ2538",
+          "name": "Left anterior basal segmental bronchial tree",
+          "conceptId": "FMA68231"
+        },
+        {
+          "id": "FJ2540",
+          "name": "Superior lingular bronchial tree",
+          "conceptId": "FMA68226"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ2454",
+          "label": "右上叶尖段气道",
+          "detail": "右侧尖段支气管树的一部分"
+        },
+        {
+          "mesh": "FJ2459",
+          "label": "右下叶上段气道",
+          "detail": "右侧下叶上段分支"
+        },
+        {
+          "mesh": "FJ2444",
+          "label": "左侧尖段气道",
+          "detail": "依源数据命名的左侧分支"
+        },
+        {
+          "mesh": "FJ2540",
+          "label": "上舌段气道",
+          "detail": "左肺舌段相关分支"
+        }
+      ],
+      "bounds": [
+        [
+          -0.11653999984264374,
+          1.2029612064361572,
+          -0.07967469841241837
+        ],
+        [
+          0.12287675211056562,
+          1.4312511682510376,
+          0.07787100225687027
+        ]
+      ],
+      "bytes": 387884,
+      "sha256": "178dd1c638d567e2c16a1a12741cf6443647800f06d57530c92250b7f4bc85d1"
+    },
+    {
+      "id": "heart-valves",
+      "name": "心脏瓣膜",
+      "concepts": [
+        "FMA7232",
+        "FMA67598"
+      ],
+      "parts": [
+        {
+          "id": "FJ2417",
+          "name": "Left anterior cusp of pulmonary valve",
+          "conceptId": "FMA7247"
+        },
+        {
+          "id": "FJ2426",
+          "name": "Left posterior cusp of aortic valve",
+          "conceptId": "FMA7254"
+        },
+        {
+          "id": "FJ2427",
+          "name": "Posterior cusp of pulmonary valve",
+          "conceptId": "FMA7250"
+        },
+        {
+          "id": "FJ2431",
+          "name": "Right posterior cusp of aortic valve",
+          "conceptId": "FMA7252"
+        },
+        {
+          "id": "FJ2434",
+          "name": "Right anterior cusp of pulmonary valve",
+          "conceptId": "FMA7249"
+        },
+        {
+          "id": "FJ2435",
+          "name": "Anterior cusp of aortic valve",
+          "conceptId": "FMA7253"
+        },
+        {
+          "id": "FJ2420",
+          "name": "Anterior leaflet of mitral valve",
+          "conceptId": "FMA7242"
+        },
+        {
+          "id": "FJ2421",
+          "name": "Anterior leaflet of tricuspid valve",
+          "conceptId": "FMA7238"
+        },
+        {
+          "id": "FJ2432",
+          "name": "Posterior leaflet of mitral valve",
+          "conceptId": "FMA7243"
+        },
+        {
+          "id": "FJ2433",
+          "name": "Posterior leaflet of tricuspid valve",
+          "conceptId": "FMA7239"
+        },
+        {
+          "id": "FJ2436",
+          "name": "Septal leaflet of tricuspid valve",
+          "conceptId": "FMA7240"
+        }
+      ],
+      "landmarks": [
+        {
+          "mesh": "FJ2420",
+          "label": "二尖瓣前叶",
+          "detail": "左房室瓣的前叶"
+        },
+        {
+          "mesh": "FJ2421",
+          "label": "三尖瓣前叶",
+          "detail": "右房室瓣的前叶"
+        },
+        {
+          "mesh": "FJ2435",
+          "label": "主动脉瓣瓣叶",
+          "detail": "位于左心室流出道"
+        },
+        {
+          "mesh": "FJ2417",
+          "label": "肺动脉瓣瓣叶",
+          "detail": "位于右心室流出道"
+        }
+      ],
+      "bounds": [
+        [
+          -0.021077200770378113,
+          1.2667505141053133,
+          -0.014557072293324504
+        ],
+        [
+          0.06285429745912552,
+          1.3433812485150187,
+          0.05958100035786629
+        ]
+      ],
+      "bytes": 158568,
+      "sha256": "f88bc6f514f9cd54547ddd540a960c48c838c0ed93cc04b4d3b826afc7325fbc"
+    }
+  ]
+}

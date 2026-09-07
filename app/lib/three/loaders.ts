@@ -95,7 +95,8 @@ export class AnatomyAssetManager {
         material.opacity = 1;
         material.depthWrite = true;
         material.depthTest = true;
-        material.side = THREE.FrontSide;
+        // Preserve GLB sidedness: thin anatomical sheets such as mesentery
+        // need their authored back faces when the user rotates the specimen.
         if (material instanceof THREE.MeshStandardMaterial) {
           // Several open anatomy datasets intentionally ship neutral grey
           // materials. Give only those untextured, near-neutral surfaces a

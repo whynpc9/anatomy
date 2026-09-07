@@ -388,6 +388,8 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .medical-note, .fun-note { margin-top: 15px; display: flex; gap: 9px; padding: 10px; border-radius: 12px; }
 .medical-note { background: rgba(142,109,197,.065); color: #6d568f; }
 .fun-note { background: rgba(198,154,94,.09); color: #86663c; }
+.model-attribution { margin: 18px 0 0; font-size: 11px; line-height: 1.6; color: #795c55; }
+.model-attribution a { color: inherit; text-underline-offset: 3px; }
 .medical-note p, .fun-note p { margin: 0; font: 500 12px/1.4 var(--font-serif), serif; }
 .medical-note b, .fun-note b { display: block; margin-bottom: 2px; color: var(--ink); }
 .medical-note svg, .fun-note svg { flex: none; }

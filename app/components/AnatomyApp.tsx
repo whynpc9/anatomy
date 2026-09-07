@@ -180,7 +180,7 @@ export function AnatomyApp() {
           <div className="info-title-row" data-reveal>
             <div><h1>{organ.name}</h1><em>{organ.poetic}</em></div>
             <span className="specimen-stamp">
-              <OrganArt organ={organ} asset="organ" alt={`${organ.name}解剖插图`} size={92} />
+              <OrganArt organ={organ} asset="organ" alt={`${organ.name}${organ.attribution ? "模型预览" : "解剖插图"}`} size={92} />
             </span>
           </div>
           <p className="description" data-reveal>{organ.description}</p>
@@ -221,6 +221,9 @@ export function AnatomyApp() {
           </dl>
           <div className="medical-note" data-reveal><Stethoscope size={16} /><p><b>医学意义</b>{organ.medical}</p></div>
           <div className="fun-note" data-reveal><Sparkles size={15} /><p><b>你知道吗</b>{organ.funFact}</p></div>
+          {organ.attribution && <p className="model-attribution" data-reveal>
+            <a href={organ.attribution.href} target="_blank" rel="noreferrer">{organ.attribution.label}</a>
+          </p>}
         </aside>
       </div>
 
