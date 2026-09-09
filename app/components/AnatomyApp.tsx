@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import {
   Activity,
+  ChevronRight,
   CodeXml,
   Droplets,
   GitFork,
@@ -65,20 +66,32 @@ export function AnatomyApp() {
   const [organId, setOrganId] = useState<OrganId>("heart");
   const [autoRotate, setAutoRotate] = useState(true);
   const [query, setQuery] = useState("");
-  const [system, setSystem] = useState("全部");
+  const [collapsedGroups, setCollapsedGroups] = useState<ReadonlySet<string>>(() => {
+    const systems = new Set(organs.map((item) => item.system));
+    systems.delete(organById[organId].system);
+    return systems;
+  });
   const [mobileLibrary, setMobileLibrary] = useState(false);
   const [selectedHotspotId, setSelectedHotspotId] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const prefetched = useRef(new Set<OrganId>());
   const organ = organById[organId];
-  const systems = useMemo(() => ["全部", ...new Set(organs.map((item) => item.system))], []);
+  const searching = query.trim() !== "";
+  const groupedOrgans = useMemo(() => {
+    const groups = new Map<string, Organ[]>();
+    for (const item of organs) {
+      const list = groups.get(item.system);
+      if (list) list.push(item);
+      else groups.set(item.system, [item]);
+    }
+    return [...groups];
+  }, []);
   const filteredOrgans = useMemo(
     () => organs.filter((item) => {
-      const matchesSystem = system === "全部" || item.system === system;
       const searchText = `${item.name} ${item.scientificName} ${item.system}`.toLowerCase();
-      return matchesSystem && searchText.includes(query.trim().toLowerCase());
+      return searchText.includes(query.trim().toLowerCase());
     }),
-    [query, system],
+    [query],
   );
 
   useEffect(() => {
@@ -94,6 +107,13 @@ export function AnatomyApp() {
       const image = new Image();
       image.src = `/anatomy/${id}/organ.webp`;
     }
+    const system = organById[id].system;
+    setCollapsedGroups((prev) => {
+      if (!prev.has(system)) return prev;
+      const next = new Set(prev);
+      next.delete(system);
+      return next;
+    });
     setOrganId(id);
     setSelectedHotspotId(null);
     setMobileLibrary(false);
@@ -106,6 +126,34 @@ export function AnatomyApp() {
     prefetched.current.add(id);
     void fetch(organById[id].model, { priority: "low" } as RequestInit).catch(() => {});
   };
+
+  const toggleGroup = (system: string) => {
+    setCollapsedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(system)) next.delete(system);
+      else next.add(system);
+      return next;
+    });
+  };
+
+  const renderOrganButton = (item: Organ, compact = false) => (
+    <button
+      type="button"
+      key={item.id}
+      className={`organ-item ${organId === item.id ? "active" : ""}`}
+      aria-current={organId === item.id}
+      title={compact ? item.name : undefined}
+      onClick={() => selectOrgan(item.id)}
+      onPointerEnter={() => prefetchOrgan(item.id)}
+      onFocus={() => prefetchOrgan(item.id)}
+      style={{ "--item-accent": item.accent } as React.CSSProperties}
+    >
+      <span className="organ-glyph">
+        <OrganArt organ={item} asset="thumb" alt={`${item.name}缩略图`} size={47} />
+      </span>
+      <span><b>{item.name}</b>{compact ? null : <small>{item.system}</small>}</span>
+    </button>
+  );
 
   return (
     <main className="app-shell">
@@ -127,42 +175,37 @@ export function AnatomyApp() {
             <Search size={16} />
             <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索器官或系统…" />
           </label>
-          <div className="system-filters" aria-label="按系统筛选">
-            {systems.map((item) => (
-              <button
-                type="button"
-                key={item}
-                aria-pressed={system === item}
-                className={system === item ? "active" : ""}
-                onClick={() => setSystem(item)}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <div className="organ-list">
-            {filteredOrgans.map((item) => (
-              <button
-                type="button"
-                key={item.id}
-                className={`organ-item ${organId === item.id ? "active" : ""}`}
-                aria-current={organId === item.id}
-                onClick={() => selectOrgan(item.id)}
-                onPointerEnter={() => prefetchOrgan(item.id)}
-                onFocus={() => prefetchOrgan(item.id)}
-                style={{ "--item-accent": item.accent } as React.CSSProperties}
-              >
-                <span className="organ-glyph">
-                  <OrganArt organ={item} asset="thumb" alt={`${item.name}缩略图`} size={47} />
-                </span>
-                <span><b>{item.name}</b><small>{item.system}</small></span>
-              </button>
-            ))}
-            {filteredOrgans.length === 0 && (
-              <p className="empty-library">
-                没有匹配的器官
-                <button type="button" onClick={() => { setQuery(""); setSystem("全部"); }}>清除筛选</button>
-              </p>
+          <div className={searching ? "organ-list" : "organ-list grouped"}>
+            {searching ? (
+              <>
+                {filteredOrgans.map((item) => renderOrganButton(item))}
+                {filteredOrgans.length === 0 && (
+                  <p className="empty-library">
+                    没有匹配的器官
+                    <button type="button" onClick={() => setQuery("")}>清除搜索</button>
+                  </p>
+                )}
+              </>
+            ) : (
+              groupedOrgans.map(([system, items]) => {
+                const isCollapsed = collapsedGroups.has(system);
+                return (
+                  <section className="organ-group" key={system}>
+                    <button
+                      type="button"
+                      className="organ-group-header"
+                      aria-expanded={!isCollapsed}
+                      data-has-active={items.some((item) => item.id === organId)}
+                      onClick={() => toggleGroup(system)}
+                    >
+                      <ChevronRight size={13} />
+                      <span className="organ-group-name">{system}</span>
+                      <span className="organ-group-count">{items.length}</span>
+                    </button>
+                    {!isCollapsed && items.map((item) => renderOrganButton(item, true))}
+                  </section>
+                );
+              })
             )}
           </div>
         </aside>

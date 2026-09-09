@@ -79,6 +79,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 .brand em { font-size: 12px; white-space: nowrap; }
 
 .search-box {
+  flex: none;
   width: 100%;
   height: 40px;
   margin: 1px 0 10px;
@@ -122,7 +123,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 }
 
 .organ-library { padding: 16px 14px 14px; display: flex; flex-direction: column; min-height: 0; }
-.panel-heading { height: 33px; display: flex; align-items: center; justify-content: space-between; padding: 0 5px 10px; }
+.panel-heading { flex: none; height: 33px; display: flex; align-items: center; justify-content: space-between; padding: 0 5px 10px; }
 .panel-heading > span, .specimen-label, .info-panel h2 {
   letter-spacing: .13em;
   font-size: 11px;
@@ -130,36 +131,53 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 }
 .panel-heading button { border: 1px solid var(--line); background: rgba(255,255,255,.3); width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; cursor: pointer; }
 .panel-heading .mobile-close { display: none; }
-.system-filters {
+.organ-group { display: flex; flex-direction: column; gap: 4px; }
+.organ-group-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
+  align-items: center;
   gap: 6px;
-  padding: 2px 3px 11px;
-  overflow-x: auto;
-  flex: 0 0 auto;
-  scrollbar-width: none;
-  /* The scroll-attachment pair paints a hint shadow on the right edge only
-     while more chips remain off-screen; the "local" cover hides it at the end. */
-  background:
-    linear-gradient(to right, transparent, rgb(255, 251, 244) 72%) local right center / 26px 100% no-repeat,
-    linear-gradient(to right, transparent, rgba(117, 91, 70, 0.14)) scroll right center / 20px 100% no-repeat;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: rgb(255, 251, 244);
+  color: var(--muted);
+  letter-spacing: .13em;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
 }
-.system-filters::-webkit-scrollbar { display: none; }
-.system-filters button {
-  flex: 0 0 auto;
+.organ-group-header:hover { color: var(--ink); }
+.organ-group-header svg { flex: none; transition: transform .18s ease; }
+.organ-group-header[aria-expanded="true"] svg { transform: rotate(90deg); }
+.organ-group-header[data-has-active="true"] .organ-group-name:after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  vertical-align: 2px;
+}
+.organ-group-count {
+  margin-left: auto;
+  padding: 2px 7px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,.36);
-  color: var(--muted);
-  padding: 5px 9px;
-  font-size: 11px;
-  line-height: 1;
-  cursor: pointer;
+  background: rgba(255,255,255,.55);
+  font-size: 10px;
+  letter-spacing: 0;
 }
-.system-filters button.active {
-  color: #704f43;
-  border-color: rgba(216, 125, 105, .42);
-  background: rgba(253,234,226,.8);
-}
+.organ-list.grouped { gap: 8px; }
+.organ-list.grouped .organ-item { min-height: 52px; padding: 6px 10px; grid-template-columns: 40px 1fr; }
+.organ-list.grouped .organ-item > span:last-child { min-width: 0; }
+.organ-list.grouped .organ-glyph { width: 40px; height: 40px; }
+.organ-list.grouped .organ-item b { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .organ-list {
   display: flex;
   flex-direction: column;
@@ -467,6 +485,9 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .panel-heading .mobile-close { display: grid; margin-left: auto; margin-right: 7px; }
   .drawer-backdrop { display: block; position: fixed; inset: 0; z-index: 40; border: 0; background: rgba(52,39,30,.24); backdrop-filter: blur(5px); }
   .organ-list { display: grid; grid-template-columns: 1fr 1fr; }
+  .organ-list.grouped { display: flex; flex-direction: column; }
+  .organ-group { display: grid; grid-template-columns: 1fr 1fr; }
+  .organ-group-header { grid-column: 1 / -1; }
   .organ-item { min-height: 76px; }
   .info-panel { height: auto; margin-top: 10px; display: block; border-radius: 22px; }
   .hotspot-nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -488,6 +509,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   .brand strong { font-size: 25px; }
   .viewer-shell { min-height: 485px; height: 66vh; }
   .organ-list { grid-template-columns: 1fr; }
+  .organ-group { grid-template-columns: 1fr; }
   .tip-note { display: none; }
   .specimen-stamp { width: 68px; height: 68px; }
 }
